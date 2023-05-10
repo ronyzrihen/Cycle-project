@@ -83,11 +83,13 @@ aside {
     background: #FFFFFF;
 }
 
-a {
+aside > a {
     position: relative;
     right: -40px;
     top: 110px;
     z-index: 3;
+    text-decoration: none;
+    color: inherit;
 }
 
 .separate-line {
@@ -101,6 +103,39 @@ a {
     background-color: rgb(150, 150, 150);
 }
 
-.selected-aside {
+.selected {
     color: #62C462;
+}
+
+
+.bread {
+    position: absolute;
+    /* width: 150px; */
+    height: 22px;
+    left: 30px;
+    top: 115px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #999999;
+}
+
+h1 {
+    position: absolute;
+    width: 260px;
+    height: 56px;
+    left: 40%;
+    top: 200px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 58px;
+
+    color: #000000;
 }
