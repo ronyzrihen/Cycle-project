@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+aside,
+section,
+footer,
+header,
+div {
+    display: block;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #eeeeee;
+    min-height: 100%;
+    position: relative;
+}
