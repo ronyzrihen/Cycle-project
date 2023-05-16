@@ -31,13 +31,17 @@ header {
     box-shadow: 0px 15px 14px -16px rgba(0, 0, 0, 0.25);
 }
 
+#logo {
+    background-image: url("../images/cycle-logo.png");
+    height: 60px;
+    width: 150px;
+}
+
 #user {
     box-sizing: border-box;
     position: relative;
     width: 150px;
     height: 60px;
-    left: 83%;
-    top: 20px;
     background: #FFFFFF;
     border: 2px solid #62C462;
     border-radius: 37px;
@@ -67,17 +71,13 @@ header {
     top: 3px;
 }
 
-.bi-list {
-    position: absolute;
-    width: 67.5px;
-    height: 56.25px;
-    left: 95%;
-    top: 23px;
+.fa-bars {
+    position: relative;
     color: #000000;
 }
 
 aside {
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: start;
     flex-direction: column;
@@ -85,6 +85,7 @@ aside {
     height: 1024px;
     right: 0;
     top: 100px;
+    float: right;
     gap: 80px;
     background: #FFFFFF;
 }
@@ -109,7 +110,7 @@ aside>a {
     background-color: rgb(150, 150, 150);
 }
 
-.selected {
+.selected ,aside i:hover{
     color: #62C462;
 }
 
@@ -129,7 +130,7 @@ aside>a {
 
 h1 {
     position: absolute;
-    width: 260px;
+    width: fit-content;
     height: 56px;
     left: 40%;
     top: 200px;
@@ -139,22 +140,4 @@ h1 {
     font-size: 48px;
     line-height: 58px;
     color: #000000;
-}
-
-#gallery-cont {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    top: 100px;
-    background-color: #ffff;
-    border-radius: 10px;
-    width: 650px;
-    height: 456px;
-}
-
-#gallery {
-    width: 517px;
-    height: 300px;
-    background-color: #eeeeee;
 }
