@@ -12,7 +12,7 @@ div {
     display: block;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
@@ -30,43 +30,40 @@ a{
     overflow-y: auto;
 }
 
-#gallery>label{
-    position:relative;
+#gallery>label {
+    position: relative;
     height: 88px;
     width: 117px;
     background-color: #eeeeee;
     border-radius: 15px;
     margin: 2px;
 }
-#gallery>label:hover{
+
+#gallery>label:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#gallery input:checked + img  {
-border-color: #62C462;
-border-width: 3px;
-border-style: solid;
-visibility: visible;
-}
-#gallery>label>input{
-position: absolute;
-left: 0px;
-visibility: hidden;
+
+#gallery input:checked+img {
+    border-color: #62C462;
+    border-width: 3px;
+    border-style: solid;
+    visibility: visible;
 }
 
-#gallery img{
+#gallery>label>input {
+    position: absolute;
+    left: 0px;
+    visibility: hidden;
+}
+
+#gallery img {
     height: 88px;
     width: 117px;
     border-radius: 15px;
 }
 
-
-
-
-
-
 #form-container {
     position: relative;
-    top: 300px;
 }
 
 .input-group-append {
@@ -78,17 +75,12 @@ visibility: hidden;
     color: #62C462;
 }
 
-form.container {
+.form-container section.container {
     max-width: 466px;
 }
 
-
-@media screen and(max-width: 1000px){
-
-#form_container{
-    
-    flex-direction: column;
-}
-
-
+@media screen and(max-width: 1000px) {
+    #form_container {
+        flex-direction: column;
+    }
 }
