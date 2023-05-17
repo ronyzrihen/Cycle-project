@@ -39,6 +39,7 @@
             <a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl"></i></a>
         </aside>
         <div id="wrapper" class="container-fluid">
+<<<<<<< Updated upstream
             <form action="https://se.shenkar.ac.il/students/2022-2023/web1/dev_221/" method="get">
                 <section class="bread d-none d-md-block  mt-3 mb-3">
                     <a href="#" class="selected">Home</a>
@@ -162,6 +163,61 @@
                     </div>
                 </div>
             </form>
+=======
+
+            <section class="bread d-none d-md-block  mt-3 mb-3">
+                <a href="#" class="selected">Home</a>
+                <a href="index.html" class="selected">/ Milestones</a>
+                <label>/ It's all the same</label>
+            </section>
+            <h1 class="text-center container-fluid mt-5 mb-5">It's all the same</h1>
+            <section id="milestone-card" class="container"><br>
+                <h2 class="text-center">Milestone's name: It's all the same</h2><br>
+                <h3>End date: 01/03/2023</h3>
+                <div class="icons items-flex">
+                    <i class="fa-solid fa-bottle-water fa-lg"></i>
+                    <i class="bi bi-database-fill fa-lg"></i>
+                    <i class="fa-solid fa-box-open fa-lg"></i>
+                </div>
+                <div class="sum-flex">
+                    <h4>bottles- 10</h4>
+                    <h4>cans- 10</h4>
+                    <h4>cardboard- 10</h4><br><br>
+                    <section>
+                        <img src="images/spiderman-meme.jpeg" name="spiderman" alt="spiderman">
+                    </section>
+                </div>
+
+                <canvas id="myChart" style="width:100%;max-width:1100px"></canvas>
+
+                <script>
+                    var xValues = ["Finished", "Did not finish", "Did not participated"];
+                    var yValues = [57, 9, 23];
+                    var barColors = [
+                        "#62c462",
+                        "#46a546",
+                        "#468847"
+                    ];
+
+                    new Chart("myChart", {
+                        type: "pie",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                backgroundColor: barColors,
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: "Students statistics"
+                            }
+                        }
+                    });
+                </script>
+            </section>
+>>>>>>> Stashed changes
         </div>
     </main>
 
