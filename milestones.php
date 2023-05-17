@@ -15,7 +15,6 @@
     />
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
     <title>Milestomes</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body>
@@ -31,6 +30,7 @@
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
             </div>
             <div class="offcanvas-body">
                 <ul class="  d-flex flex-column justify-content-evenly">
@@ -80,44 +80,15 @@
             <section class="bread d-none d-md-block  mt-3 mb-3">
                 <a href="#" class="selected">Home</a>
                 <a href="index.html" class="selected">/ Milestones</a>
-                <label>/ It's all the same</label>
+                <label>/ Its all the same</label>
             </section>
-            <h1 class="text-center container-fluid mt-5 mb-5">Its all the same</h1>
-            <section id="milestone-card" class="container"><br>
-                <h2>Milestone's name: It's all the same</h2><br>
-                <h3>End date: 01/03/2023</h3>
-                <i class="bi bi-database-fill fa-lg"></i>
-                <section>
-                    <img src="images/spiderman-meme.jpeg" name="spiderman" alt="spiderman">
-                </section>
-            </section>
-            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-            <script>
-                var xValues = ["Finished", "Did not finish", "Did not participated"];
-                var yValues = [57, 9, 23];
-                var barColors = [
-                    "#62c462",
-                    "#46a546",
-                    "#468847"
-                ];
 
-                new Chart("myChart", {
-                    type: "pie",
-                    data: {
-                        labels: xValues,
-                        datasets: [{
-                            backgroundColor: barColors,
-                            data: yValues
-                        }]
-                    },
-                    options: {
-                        title: {
-                            display: true,
-                            text: "Students statistics"
-                        }
-                    }
-                });
-            </script>
+            <h1 class="text-center container-fluid mt-5 mb-5">Its all the same</h1>
+
+
+
+
+
         </div>
     </main>
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
@@ -131,6 +102,8 @@
         </ul>
 
     </footer>
+
+
 </body>
 
 </html>
