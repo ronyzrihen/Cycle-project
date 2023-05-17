@@ -4,49 +4,113 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/cycle-form.css">
+    <link rel="stylesheet" href="css/milestone.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
-    <link rel="stylesheet" href="css/milestone.css">
     <title>Milestomes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body>
     <header class="d-flex align-items-center ">
         <a href="index.html" id="logo" class="me-auto ms-5"></a>
-        <section class="me-5" id="user">
+        <a href="#" class="me-5 d-none d-md-inline" id="user">
             <label>Dovrat</label>
             <img src="images/dovrat.jpeg" alt="user photo">
-        </section>
-        <section class="me-5">
-            <i class="fa-solid fa-bars fa-2xl"></i>
-        </section>
+        </a>
+
+        <button class="navbar-toggler fa-solid fa-bars fa-2xl navbar-toggler-icon me-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"></button>
+
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="  d-flex flex-column justify-content-evenly">
+                    <li>
+                        <a href="#" id="profile"><img src="images/Dovrat.jpeg" alt="dovrat">
+                            <p>profile</p>
+                        </a>
+                    </li>
+                    <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i><p>Home</p></a></li>
+                    <li><a href="#" id="humburger-selected"><i class="bi bi-trophy-fill fa-2xl"></i><p>Milestones</p></a></li>
+                    <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i><p>Users</p></a></li>
+                    <li>
+                        <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i>
+                            <P>Friend zone</P>
+                        </a>
+                    </li>
+
+                </ul>
+                <ul id="aside-utils" class="d-flex flex-column justify-content-evenly ">
+                    <li><a href="#"><i class="bi bi-gear-fill fa-2xl"></i><p>Settings</p></a></li>
+                    <li>
+                        <a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl"></i>
+                            <p>Exit</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </header>
     <main class="d-flex flex-row-reverse">
-        <aside class="d-none d-md-inline">
-            <a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a>
-            <a href="#"><i class="bi bi-trophy-fill fa-2xl"></i></a>
-            <a href="#" class="selected"><i class="bi bi-people-fill fa-2xl"></i></a>
-            <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
-            <div class="separate-line"></div>
-            <a href="#"><i class="bi bi-gear-fill fa-2xl"></i> </a>
-            <a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl"></i></a>
+        <aside class="d-md-flex d-none d-md-inline d-flex flex-column  ">
+
+            <ul id="aside-links" class="d-flex  flex-column justify-content-around">
+                <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
+                <li><a href="#" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
+                <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
+                <li>
+                    <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
+                </li>
+            </ul>
+
+
         </aside>
         <div id="wrapper" class="container-fluid">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             <form action="https://se.shenkar.ac.il/students/2022-2023/web1/dev_221/" method="get">
                 <section class="bread d-none d-md-block  mt-3 mb-3">
                     <a href="#" class="selected">Home</a>
                     <a href="index.html" class="selected">/ Milestones</a>
                     <label>/ New Milestone</label>
-                </section>
+=======
 
+            <section class="bread d-none d-md-block  mt-3 mb-3">
+                <a href="#" class="selected">Home</a>
+                <a href="index.html" class="selected">/ Milestones</a>
+                <label>/ It's all the same</label>
+            </section>
+            <h1 class="text-center container-fluid mt-5 mb-5">Its all the same</h1>
+            <section id="milestone-card" class="container"><br>
+                <h2>Milestone's name: It's all the same</h2><br>
+                <h3>End date: 01/03/2023</h3>
+                <i class="bi bi-database-fill fa-lg"></i>
+                <section>
+                    <img src="images/spiderman-meme.jpeg" name="spiderman" alt="spiderman">
+>>>>>>> refs/remotes/origin/main
+                </section>
+            </section>
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            <script>
+                var xValues = ["Finished", "Did not finish", "Did not participated"];
+                var yValues = [57, 9, 23];
+                var barColors = [
+                    "#62c462",
+                    "#46a546",
+                    "#468847"
+                ];
+
+<<<<<<< HEAD
                 <h1 class="text-center container-fluid mt-5 mb-5">New Milestone</h1>
 
                 <section id="form-container" class="container d-md-flex  ">
@@ -218,12 +282,38 @@
                 </script>
             </section>
 >>>>>>> Stashed changes
+=======
+                new Chart("myChart", {
+                    type: "pie",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "Students statistics"
+                        }
+                    }
+                });
+            </script>
+>>>>>>> refs/remotes/origin/main
         </div>
     </main>
+    <footer class="container-fluid fixed-bottom d-flex d-md-none">
+        <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
+            <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
+            <li><a href="#" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
+            <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
+            <li>
+                <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
+            </li>
+        </ul>
 
-
-
-
+    </footer>
 </body>
 
 </html>
