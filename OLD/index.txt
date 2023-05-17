@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php 
+    echo "<h1>New Milestone</h1>";
+    $name = $_GET['milstoneName'];
+    $date = $_GET['endDate'];
+    $bottles = $_GET['bottles'];
+    $cans = $_GET['cans'];
+    $boxes = $_GET['boxes'];
+    $badge = $_GET['galleryBadge'];
+
+    echo "<p>Milestone name: $name </p>
+    <p>End date: $date </p>
+    <p>Bottles: $bottles </p>
+    <p>Cans: $cans </p>
+    <p>Boxes: $boxes </p>
+    <img src=\"$badge\"></img>";
+    ?>
+    
+</body>
+</html>
