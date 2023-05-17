@@ -1,148 +1,147 @@
     * {
-    margin: 0;
-    padding: 0;
-}
-
-body,
-aside,
-section,
-footer,
-header,
-div {
-    display: block;
-}
-
-a {
-    text-decoration: none;
-}
-
-#gallery-cont {
-    position: relative;
-    background-color: #ffff;
-    border-radius: 10px;
-    max-width: 650px;
-    height: 456px;
-}
-
-#gallery {
-    height: 300px;
-    max-width: 520px;
-    overflow-y: auto;
-}
-
-#gallery>label {
-    position: relative;
-    height: 88px;
-    width: 117px;
-    background-color: #eeeeee;
-    border-radius: 15px;
-    margin: 2px;
-}
-
-#gallery>label:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-#gallery input:checked+img {
-    border-color: #62C462;
-    border-width: 3px;
-    border-style: solid;
-    visibility: visible;
-}
-
-#gallery>label>input {
-    position: absolute;
-    left: 0px;
-    visibility: hidden;
-}
-
-#gallery img {
-    height: 88px;
-    width: 117px;
-    border-radius: 15px;
-}
-
-#form-container {
-    position: relative;
-}
-
-.input-group-append {
-    cursor: pointer;
-}
-
-.row.mb-5 i,
-#dateIcon>i {
-    color: #62C462;
-}
-
-.form-container section.container {
-    max-width: 466px;
-}
-
-
-/* ---------------------------------------- */
-
-#milestone-card {
-    height: 820px;
-    background-color: #ffff;
-    border-radius: 15px;
-}
-
-#img-box {
-    height: fit-content;
-    width: fit-content;
-    border: #62C462 solid 5px;
-    border-radius: 15px;
-}
-
-#img-box img {
-    border-radius: 15px;
-}
-
-section>img {
-    position: relative;
-    border-radius: 30px;
-    width: 250px;
-    height: 175px;
-    left: -80px;
-    top: -130px;
-}
-
-h4,
-h3,
-h2 {
-    position: relative;
-    font-family: 'Nunito';
-    font-weight: 400;
-}
-
-.items-flex {
-    position: relative;
-    display: flex;
-    font-family: 'Nunito';
-    flex-direction: column;
-    gap: 80px;
-    top: 60px;
-}
-
-.icons {
-    position: relative;
-    font-family: 'Nunito';
-    color: #62C462;
-    font-size: 40px;
-}
-
-.sum-flex {
-    position: relative;
-    display: flex;
-    font-family: 'Nunito';
-    flex-direction: column;
-    gap: 80px;
-    top: -220px;
-    left: 90px;
-}
-
-#myChart {
-    position: relative;
-    top: -950px;
-    left: 250px;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body,
+    aside,
+    section,
+    footer,
+    header,
+    div {
+        display: block;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    #gallery-cont {
+        position: relative;
+        background-color: #ffff;
+        border-radius: 10px;
+        max-width: 650px;
+        height: 456px;
+    }
+    
+    #gallery {
+        height: 300px;
+        max-width: 520px;
+        overflow-y: auto;
+    }
+    
+    #gallery>label {
+        position: relative;
+        height: 88px;
+        width: 117px;
+        background-color: #eeeeee;
+        border-radius: 15px;
+        margin: 2px;
+    }
+    
+    #gallery>label:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    #gallery input:checked+img {
+        border-color: #62C462;
+        border-width: 3px;
+        border-style: solid;
+        visibility: visible;
+    }
+    
+    #gallery>label>input {
+        position: absolute;
+        left: 0px;
+        visibility: hidden;
+    }
+    
+    #gallery img {
+        height: 88px;
+        width: 117px;
+        border-radius: 15px;
+    }
+    
+    #form-container {
+        position: relative;
+    }
+    
+    .input-group-append {
+        cursor: pointer;
+    }
+    
+    .row.mb-5 i,
+    #dateIcon>i {
+        color: #62C462;
+    }
+    
+    .form-container section.container {
+        max-width: 466px;
+    }
+    /* ---------------------------------------- */
+    
+    #milestone-card {
+        height: 820px;
+        background-color: #ffff;
+        border-radius: 15px;
+    }
+    
+    #img-box {
+        height: fit-content;
+        width: fit-content;
+        border: #62C462 solid 5px;
+        border-radius: 15px;
+    }
+    
+    #img-box img {
+        border-radius: 15px;
+    }
+    
+    section>img {
+        position: relative;
+        border-radius: 30px;
+        width: 250px;
+        height: 175px;
+        left: -80px;
+        top: -130px;
+    }
+    
+    h4,
+    h3,
+    h2 {
+        position: relative;
+        font-family: 'Nunito';
+        font-weight: 400;
+    }
+    
+    .items-flex {
+        position: relative;
+        display: flex;
+        font-family: 'Nunito';
+        flex-direction: column;
+        gap: 80px;
+        top: 60px;
+    }
+    
+    .icons {
+        position: relative;
+        font-family: 'Nunito';
+        color: #62C462;
+        font-size: 40px;
+    }
+    
+    .sum-flex {
+        position: relative;
+        display: flex;
+        font-family: 'Nunito';
+        flex-direction: column;
+        gap: 80px;
+        top: -220px;
+        left: 90px;
+    }
+    
+    #myChart {
+        position: relative;
+        top: -950px;
+        left: 250px;
+    }
