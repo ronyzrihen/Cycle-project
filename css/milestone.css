@@ -58,7 +58,7 @@ header {
     font-weight: 500;
     font-size: 24px;
     line-height: 66%;
-    /* identical to box height, or 16px */
+
     color: #000000;
 }
 
@@ -78,9 +78,6 @@ header {
 
 aside {
     position: relative;
-    display: flex;
-    justify-content: start;
-    flex-direction: column;
     width: 113px;
     height: 1024px;
     right: 0;
@@ -89,13 +86,18 @@ aside {
     background: #FFFFFF;
 }
 
-aside>a {
+aside a {
     position: relative;
-    right: -40px;
-    top: 110px;
-    z-index: 3;
     text-decoration: none;
-    color: inherit;
+    color: black;
+}
+
+#aside-utils{
+    height: 30%;
+    border-top: rgba(0, 0, 0, 0.2) solid 2px;
+}
+#aside-links{
+    height: 70%;
 }
 
 .separate-line {
@@ -109,14 +111,9 @@ aside>a {
     background-color: rgb(150, 150, 150);
 }
 
-.selected,
-aside i:hover {
-    color: #62C462;
-}
 
 .bread {
     position: relative;
-    /* width: 150px; */
     height: 22px;
     left: 30px;
     font-family: 'Nunito';
@@ -131,8 +128,6 @@ h1 {
     position: relative;
     width: fit-content;
     height: 56px;
-    /* left: 40%;
-    top: 200px; */
     font-family: 'Nunito';
     font-style: normal;
     font-weight: 500;
@@ -140,3 +135,52 @@ h1 {
     line-height: 58px;
     color: #000000;
 }
+ul {
+     list-style-type: none; 
+}
+.offcanvas-body ul{
+    height: 500px;
+}
+.offcanvas-body a, footer a{
+    color: #000000;
+  display: flex;
+  align-content: center;
+}
+
+.offcanvas-body a>p{
+    margin-left: 20px;
+    font-size: 24px;
+}
+
+
+.offcanvas{
+    top: 275px;
+}
+
+#aside-selected,
+#humburger-selected,
+.bread>a,
+aside i:hover,
+.offcanvas-body a:hover,
+ aside .selected,
+ header>button:hover {
+    color: #62C462;
+}
+
+footer{
+    height: 50px;
+    background-color: #a92929;
+    border-radius: 15px 15px 0 0;
+    bottom: 0;
+}
+footer>ul{
+    width: 100%;
+}
+
+@media screen and(max-width:768px) {
+    #user {
+        border: none;
+        width: 60px;
+    }
+}
+

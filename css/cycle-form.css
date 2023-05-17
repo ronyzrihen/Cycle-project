@@ -26,7 +26,7 @@ a {
 
 #gallery {
     height: 300px;
-    max-width: 520px;
+    max-width: 530px;
     overflow-y: auto;
 }
 
@@ -79,8 +79,6 @@ a {
     max-width: 466px;
 }
 
-@media screen and(max-width: 1000px) {
-    #form_container {
-        flex-direction: column;
-    }
-}
+
+
+
