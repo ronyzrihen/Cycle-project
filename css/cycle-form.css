@@ -1,4 +1,4 @@
-* {
+    * {
     margin: 0;
     padding: 0;
 }
@@ -79,8 +79,70 @@ a {
     max-width: 466px;
 }
 
-@media screen and(max-width: 1000px) {
-    #form_container {
-        flex-direction: column;
-    }
+
+/* ---------------------------------------- */
+
+#milestone-card {
+    height: 820px;
+    background-color: #ffff;
+    border-radius: 15px;
 }
+
+#img-box {
+    height: fit-content;
+    width: fit-content;
+    border: #62C462 solid 5px;
+    border-radius: 15px;
+}
+
+#img-box img {
+    border-radius: 15px;
+}
+
+section>img {
+    position: relative;
+    border-radius: 30px;
+    width: 250px;
+    height: 175px;
+    left: -80px;
+    top: -130px;
+}
+
+h4,
+h3,
+h2 {
+    position: relative;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.items-flex {
+    position: relative;
+    display: flex;
+    font-family: 'Nunito';
+    flex-direction: column;
+    gap: 80px;
+    top: 60px;
+}
+
+.icons {
+    position: relative;
+    font-family: 'Nunito';
+    color: #62C462;
+    font-size: 40px;
+}
+
+.sum-flex {
+    position: relative;
+    display: flex;
+    font-family: 'Nunito';
+    flex-direction: column;
+    gap: 80px;
+    top: -220px;
+    left: 90px;
+}
+
+#myChart {
+    position: relative;
+    top: -950px;
+    left: 250px;
