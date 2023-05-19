@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+aside,
+section,
+footer,
+header,
+div {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+#gallery-cont {
+    position: relative;
+    background-color: #ffff;
+    border-radius: 10px;
+    max-width: 650px;
+    height: 456px;
+}
+
+#gallery {
+    height: 300px;
+    max-width: 520px;
+    overflow-y: auto;
+}
+
+#gallery>label {
+    position: relative;
+    height: 88px;
+    width: 117px;
+    background-color: #eeeeee;
+    border-radius: 15px;
+    margin: 2px;
+}
+
+#gallery>label:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#gallery input:checked+img {
+    border-color: #62C462;
+    border-width: 3px;
+    border-style: solid;
+    visibility: visible;
+}
+
+#gallery>label>input {
+    position: absolute;
+    left: 0px;
+    visibility: hidden;
+}
+
+#gallery img {
+    height: 88px;
+    width: 117px;
+    border-radius: 15px;
+}
+
+#form-container {
+    position: relative;
+}
+
+.input-group-append {
+    cursor: pointer;
+}
+
+.milestone-rectangle i:hover,
+.row.mb-5 i,
+#dateIcon>i,
+.color {
+    color: #62C462;
+}
+
+.form-container section.container {
+    max-width: 466px;
+}
+
+
+/* ---------------------------------------- */
+
+#milestone-card {
+    height: 820px;
+    background-color: #ffff;
+    border-radius: 15px;
+}
+
+#img-box {
+    height: fit-content;
+    width: fit-content;
+    border: #62C462 solid 5px;
+    border-radius: 15px;
+}
+
+#img-box img {
+    border-radius: 15px;
+}
+
+section>img {
+    position: relative;
+    border-radius: 30px;
+    width: 250px;
+    height: 175px;
+}
+
+h4,
+h3,
+h2 {
+    position: relative;
+    font-family: 'Nunito';
+    font-weight: 400;
+}
+
+.items-flex {
+    position: relative;
+    display: flex;
+    font-family: 'Nunito';
+    flex-direction: column;
+    gap: 80px;
+    top: 60px;
+}
+
+.icons {
+    position: relative;
+    font-family: 'Nunito';
+    color: #62C462;
+    font-size: 40px;
+}
+
+.sum-flex {
+    position: relative;
+    display: flex;
+    font-family: 'Nunito';
+    flex-direction: column;
+    gap: 80px;
+    top: -220px;
+    left: 90px;
+}
+
+
+/* ------------------------------- */
+
+#new-milestone {
+    position: relative;
+    height: 50px;
+    background: #62C462;
+    border-radius: 24px;
+}
+
+#new-milestone label {
+    width: fit-content;
+}
+
+#new-milestone i {
+    color: #FFFFFF;
+}
+
+#new-milestone:hover {
+    background-color: #71e371;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+a label {
+    position: relative;
+    width: 100%;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-size: 130%;
+    line-height: 113.02%;
+}
+
+#new-milestone label {
+    color: #FFFFFF;
+}
+
+#edit {
+    position: relative;
+    width: fit-content;
+    height: 50px;
+    color: #000000;
+    background: #FFFFFF;
+    border-radius: 24px;
+}
+
+#edit label,
+#edit i {
+    color: #000000;
+}
+
+.milestone-rectangle:hover,
+#edit:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+article {
+    position: relative;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    gap: 29px;
+}
+
+.milestone-rectangle {
+    position: relative;
+    height: 156px;
+    background: #FFFFFF;
+    box-shadow: 0px 17px 22px -16px rgba(0, 0, 0, 0.2);
+    border-radius: 27px;
+}
+
+.milestone-rectangle i {
+    position: relative;
+    font-size: 30px;
+}
+
+.left-list i {
+    left: 15px;
+    font-size: 25px;
+}
+
+h5 {
+    position: relative;
+    font-family: 'Nunito';
+    font-size: 140%;
+    color: #000000;
+}
+
+.milestone-rectangle h5 {
+    left: 10px;
+}
+
+.middle-list {
+    position: relative;
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+li>i {
+    position: relative;
+    font-size: 250%;
+    color: #62C462;
+}
+
+.middle-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    display: inline;
+    font-size: 130%;
+}
+
+.badge {
+    position: relative;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 140%;
+    color: #000000;
+}
+
+.right-list img,
+#imgsizes {
+    position: relative;
+    max-width: 117px;
+    max-height: 88px;
+    border-radius: 30px;
+}
