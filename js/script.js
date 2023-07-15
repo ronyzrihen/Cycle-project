@@ -105,3 +105,15 @@ function diagram() {
         }
     });
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the icon elements
+    const icons = document.querySelectorAll('.middle-list i');
+
+    // Add a special class to each icon to trigger the movement
+    icons.forEach((icon, index) => {
+        icon.classList.add('move-' + (index + 1));
+    });
+});
+
