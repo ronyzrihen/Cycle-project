@@ -3,6 +3,9 @@
 //     document.getElementById('formId').onsubmit(checkform);
 // }
 
+
+
+
 function checkform() {
     let flag = 0;
     let name = document.getElementById("milstoneName");
@@ -77,11 +80,8 @@ function checkform() {
 
 
 
-function diagram() {
-
-
+function diagram(yValues) {
     var xValues = ["Finished", "Did not finish", "Did not participated"];
-    var yValues = [57, 9, 23];
     var barColors = [
         "#62c462",
         "#46a546",
@@ -108,10 +108,7 @@ function diagram() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Get the icon elements
     const icons = document.querySelectorAll('.middle-list i');
-
-    // Add a special class to each icon to trigger the movement
     icons.forEach((icon, index) => {
         icon.classList.add('move-' + (index + 1));
     });
