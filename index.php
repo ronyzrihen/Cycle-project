@@ -37,7 +37,7 @@ if (!empty($_POST["loginMail"])) { // true if form was submitted
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/cycle-form.css">
-    <!-- <link rel="stylesheet" href="css/milestone.css"> -->
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
@@ -51,13 +51,13 @@ if (!empty($_POST["loginMail"])) { // true if form was submitted
     <section id="login">
         <form action="#" method="post" id="frm">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Please enter your username</label>
-                <input type="email" name="loginMail" class="form-control fix" id="exampleInputEmail1"
+                <label for="exampleInputEmail1" class="form-label">Username</label>
+                <input type="email" name="loginMail" placeholder = "Please enter your username"class="form-control fix" id="exampleInputEmail1"
                     aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Please enter your password</label>
-                <input type="password" name="loginPass" class="form-control fix mb-3" id="exampleInputPassword1">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="loginPass" placeholder = "Please enter your password" class="form-control fix mb-3" id="exampleInputPassword1">
             </div>
             <button type="button" class="btn btn-outline-success fix2">Log me in!</button>
             <div class="error-message">
