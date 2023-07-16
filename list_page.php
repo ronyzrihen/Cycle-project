@@ -135,7 +135,11 @@
                     </a>
                     <a href="#" class="d-flex align-items-center ms-2" id="edit">
                         <i class="bi bi-pencil-square ms-3 me-2"></i>
-                        <label class="me-3">Delete</label>
+                        <label class="me-3">Edit</label>
+                    </a>
+                    <a href="#" class="d-flex align-items-center ms-2" id="edit">&nbsp
+                        <i class="bi bi-x-circle ms-2"></i>
+                        <label class="me-3"> &nbspDelete</label>
                     </a>
                 </section>';
             }
@@ -146,7 +150,7 @@
                     foreach($row2 as $rows2){
                         echo '<section class="d-flex justify-content-evenly align-items-center milestone-rectangle container">';
                         echo '<section class="col-md-3 left-list">';
-                        echo  '<a href="milestone.php?milestone_id='.$rows2["milestone_id"].'"><i class="bi bi-info-circle"></i></a><br>';
+                        echo '<a href="milestone.php?milestone_id='.$rows2["milestone_id"].'"><i class="bi bi-info-circle"></i></a><br>';
                         echo        '<h5>"'.$rows2["milestone_name"].'"</h5>';
                         echo        '<h5>Until: '.$rows2["end_date"]. '</h5>';
                         echo    '</section>';
