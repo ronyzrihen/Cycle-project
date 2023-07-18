@@ -17,6 +17,16 @@
             echo "Failed to retrieve data from the database.";
         }
     }
+    $flag = $_GET['milestone_id'];
+    if(isset($flag)){
+        $query3 = "SELECT * FROM tbl_221_milestones WHERE milestone_id = ".$flag;
+        $result3 = mysqli_query($connection, $query3);
+        if ($result3) {
+            $row3 = mysqli_fetch_assoc($result3);
+        } else {
+            echo "Failed to retrieve data from the database.";
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +48,7 @@
 </head>
 <body>
     <header class="d-flex align-items-center ">
-        <a href="list_page.html" id="logo" class="me-auto ms-5"></a>
+        <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
         <a href="#" class="me-5 d-none d-md-inline" id="user">
             <label><?php echo $row2['name']; ?></label>
             <img src=<?php echo $row2['users_picture']; ?> alt="user photo">
@@ -81,7 +91,7 @@
 
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
                 <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-                <li><a href="#" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
+                <li><a href="#" ><i class="bi bi-trophy-fill fa-2xl aside-selected"></i></a></li>
                 <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
                 <li>
                     <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
@@ -89,7 +99,7 @@
             </ul>
         </aside>
         <div id="wrapper" class="container-fluid">
-            <form action="list_page.php" id="formId" method="post" class="d-flex flex-column" onsubmit="checkform()">
+            <form action="save_milestone.php" id="formId" method="post" class="d-flex flex-column" >
                 <section class="bread d-none d-md-block  mt-3 mb-3">
                     <a href="#" class="selected">Home</a>
                     <a href="list_page.php" class="selected">/ Milestones</a>
@@ -99,12 +109,12 @@
                 <section id="form-container" class="container d-md-flex ">
                     <section class="container">
                         <div class="form-floating mb-3 col-12">
-                        <input type="text" class="form-control required" id="milestoneName" name="milestoneName" placeholder="Milestone Name">                            <label for="milstoneName">Milestone Name</label>
+                        <input type="text" class="form-control required" id="milestoneName" <?php if(isset($flag)) {echo 'value ="'.$row3["milestone_name"].'"';}?> name="milestoneName" placeholder="Milestone Name"><label for="milstoneName">Milestone Name</label>
                         </div>
                         <section class="row mb-3">
                             <div class="col-5">
                                 <div class="input-group" id="datepicker">
-                                    <input type="date" class="form-control" id="endDate" name="endDate" placeholder="End date" aria-label="Input group example" aria-describedby="datepicker">
+                                    <input type="date" class="form-control" id="endDate" name="endDate" <?php if(isset($flag)) {echo 'value = '.date($row3["end_date"]);} ?> placeholder="End date" aria-label="Input group example" aria-describedby="datepicker">
                                 </div>
                             </div>
                         </section>
@@ -114,7 +124,7 @@
                             <section class="row mb-5 ">
                                 <div class="col-12 col-md-8 ">
                                     <div class="input-group ">
-                                        <input type="number" name="bottles" class="form-control " id="numOfPlastics" placeholder="Number of plastics " aria-label="Input group example " aria-describedby="bottles " min=0>
+                                        <input type="number" name="bottles" class="form-control " id="numOfPlastics" placeholder="Number of plastics " <?php if(isset($flag)) {echo 'value ="'.$row3["bottles"].'"';}?>  aria-label="Input group example " aria-describedby="bottles " min=0>
                                         <span class="input-group-text " id="bottles ">
                                             <i class="fa-solid fa-bottle-water fa-lg "></i>
                                         </span>
@@ -124,7 +134,7 @@
                             <section class="row mb-5 ">
                                 <div class="col-12 col-md-8 ">
                                     <div class="input-group ">
-                                        <input type="number" name="cans" class="form-control" id="numOfCans" placeholder="Number of cans " aria-label="Input group example " aria-describedby="cans " min=0>
+                                        <input type="number" name="cans" class="form-control" id="numOfCans" placeholder="Number of cans " <?php if(isset($flag)) {echo 'value ="'.$row3["cans"].'"';}?>  aria-label="Input group example " aria-describedby="cans " min=0>
                                         <span class="input-group-text " id="cans ">
                                             <i class="bi bi-database-fill fa-lg "></i>
                                         </span>
@@ -134,7 +144,7 @@
                             <section class="row mb-5 ">
                                 <div class="col-12 col-md-8 ">
                                     <div class="input-group ">
-                                        <input type="number" name="boxes" class="form-control" id="numOfBoxes" placeholder="Number of cardboards " aria-label="Input group example " aria-describedby="boxes " min=0>
+                                        <input type="number" name="boxes" class="form-control" id="numOfBoxes" placeholder="Number of cardboards " <?php if(isset($flag)) {echo 'value ="'.$row3["boxes"].'"';}?>  aria-label="Input group example " aria-describedby="boxes " min=0>
                                         <span class="input-group-text " id="boxes ">
                                             <i class="fa-solid fa-box-open fa-lg "></i>
                                         </span>
@@ -161,7 +171,7 @@
                         </div>
                         <div id="gallery" class="container d-flex flex-wrap">
                             <label>
-                                <input type="radio" name="galleryBadge" value="images/best-box-puns.jpg">
+                                <input type="radio" name="galleryBadge" value="images/best-box-puns.jpg" >
                                 <img src="images/best-box-puns.jpg" alt="">
                             </label>
                             <label><input type="radio" name="galleryBadge" value="images/Bottles-Up-Game-Slide-copy.jpg">
@@ -184,6 +194,9 @@
                         </div>
                     </section>
                 </section>
+                <input type="hidden" name ="galleryBadge" value ="<?php echo $row3['milestone_photo'];?>">
+                <input type="hidden" id = "instanceId" name ="milestone_id" value ="<?php echo $flag;?>">
+                
                 <button id="share-btn" type="button" class="btn btn-success mt-5 col-8 col-md-4 align-self-center" data-bs-toggle="modal" data-bs-target="#exampleModal">Share to friend zone</button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -195,9 +208,10 @@
                             <div class="modal-body">
                                 <span> Are you sure you your milestone is ready to be shared?</span>
                             </div>
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" name="submit" value="submit" class="btn btn-success">Save
+                                <button type="submit" id="btnform" name="submit" value="submit" class="btn btn-success">Save
                                     changes</button>
                             </div>
                         </div>
@@ -209,7 +223,7 @@
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-            <li><a href="#" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
+            <li><a href="#" ><i class="bi bi-trophy-fill fa-2xl aside-selected"></i></a></li>
             <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
             <li>
                 <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
@@ -219,3 +233,10 @@
     </footer>
 </body>
 </html>
+<?php
+
+mysqli_free_result($result2);
+mysqli_free_result($result3);
+mysqli_close($connection);
+
+?>

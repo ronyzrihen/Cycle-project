@@ -1,20 +1,58 @@
-// window.onload = () => {
+window.onload = function() {
+    let formElement = document.getElementById("btnform");
+    if (formElement) {
+        formElement.onclick = function() { checkform(); }
+    }
+    let editBtn = document.getElementById("edit");
+    if (editBtn) {
+        editBtn.onclick = function() {
 
-//     document.getElementById('formId').onsubmit(checkform);
-// }
+            editAction("bi bi-pencil-square replaceable_icon")
+            editBtn.style.color = "red";
+        };
+    }
+    let deleteBtn = document.getElementById("delete");
+    if (deleteBtn) {
+        deleteBtn.onclick = function() {
+
+            deleteBtn.style.color = "red";
+            deleteAction("bi bi-x-circle replaceable_icon")
+        };
+    }
+}
 
 
+function editAction(aClass) {
+    let instances = document.getElementsByClassName("instance");
+    for (let i = 0; i < instances.length; i++) {
+        instances[i].querySelector(".replaceable_icon").className = aClass;
+        ref = instances[i].querySelector("a");
+        ref.onclick = function(e) {
+            e.preventDefault();
+            location.replace("cycle-form" + ref.getAttribute('href').slice(9));
+        };
+    }
+}
 
+function deleteAction(aClass) {
+    let instances = document.getElementsByClassName("instance");
+    for (let i = 0; i < instances.length; i++) {
+        instances[i].querySelector(".replaceable_icon").className = aClass;
+        instances[i].querySelector("a").onclick = function(e) {
+            e.preventDefault();
+            location.replace("save_milestone" + instances[i].querySelector("a").getAttribute('href').slice(9) + "&del=1");
+        };
+    }
+}
 
 function checkform() {
     let flag = 0;
-    let name = document.getElementById("milstoneName");
-    let bottles = document.getElementById("numOfPlastics");
-    let cans = document.getElementById("numOfCans");
-    let boxes = document.getElementById("numOfBoxes");
-
-    let date = document.getElementById('endDate');
-
+    let aform = document.querySelector("form");
+    let name = document.querySelector("#milestoneName");
+    let bottles = document.querySelector("#numOfPlastics");
+    let cans = document.querySelector("#numOfCans");
+    let boxes = document.querySelector("#numOfBoxes");
+    let date = aform.querySelector('#endDate');
 
     if (name.value == "") {
         if (!name.classList.contains('is-invalid'))
@@ -108,9 +146,8 @@ function diagram(yValues) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const icons = document.querySelectorAll('.middle-list i');
+    const icons = document.querySelectorAll('.icon-list i');
     icons.forEach((icon, index) => {
         icon.classList.add('move-' + (index + 1));
     });
 });
-
