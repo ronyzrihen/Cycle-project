@@ -1,24 +1,73 @@
 window.onload = function() {
+    fetch("json/sort.json")
+        .then(response => response.json())
+        .then(data => dropDown(data));
+
     let formElement = document.getElementById("btnform");
     if (formElement) {
         formElement.onclick = function() { checkform(); }
     }
+
+    let infoBtn = document.getElementById("info");
     let editBtn = document.getElementById("edit");
+    let deleteBtn = document.getElementById("delete");
+    if (infoBtn) {
+        infoBtn.onclick = function() {
+            editAction("bi bi-info-circle replaceable_icon");
+            if (deleteBtn.classList.contains("text-danger")) {
+                deleteBtn.classList.remove("text-danger");
+            }
+            if (editBtn.classList.contains("text-warning")) {
+                editBtn.classList.remove("text-warning");
+            }
+            if (!info.classList.contains("d-none")) {
+                info.classList.add("d-none");
+            }
+
+
+        }
+    }
     if (editBtn) {
         editBtn.onclick = function() {
 
-            editAction("bi bi-pencil-square replaceable_icon")
-            editBtn.style.color = "red";
+            showInfoBtn();
+
+            editAction("bi bi-pencil-square replaceable_icon");
+            if (!editBtn.classList.contains("text-warning")) {
+                editBtn.classList.add("text-warning");
+            }
+            if (deleteBtn.classList.contains("text-danger")) {
+                deleteBtn.classList.remove("text-danger");
+            }
+
+
         };
     }
-    let deleteBtn = document.getElementById("delete");
     if (deleteBtn) {
         deleteBtn.onclick = function() {
 
-            deleteBtn.style.color = "red";
-            deleteAction("bi bi-x-circle replaceable_icon")
+            showInfoBtn();
+
+            deleteAction("bi bi-x-circle replaceable_icon");
+            if (!deleteBtn.classList.contains("text-danger")) {
+                deleteBtn.classList.add("text-danger");
+            }
+            if (editBtn.classList.contains("text-warning")) {
+                editBtn.classList.remove("text-warning");
+            }
+
+
         };
     }
+}
+
+function showInfoBtn() {
+
+    let info = document.getElementById("info");
+    if (info.classList.contains("d-none")) {
+        info.classList.remove("d-none");
+    }
+
 }
 
 
@@ -26,10 +75,9 @@ function editAction(aClass) {
     let instances = document.getElementsByClassName("instance");
     for (let i = 0; i < instances.length; i++) {
         instances[i].querySelector(".replaceable_icon").className = aClass;
-        ref = instances[i].querySelector("a");
-        ref.onclick = function(e) {
+        instances[i].querySelector("a").onclick = function(e) {
             e.preventDefault();
-            location.replace("cycle-form" + ref.getAttribute('href').slice(9));
+            location.replace("cycle-form" + instances[i].querySelector("a").getAttribute('href').slice(9));
         };
     }
 }
@@ -151,3 +199,22 @@ document.addEventListener('DOMContentLoaded', () => {
         icon.classList.add('move-' + (index + 1));
     });
 });
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+function dropDown(data) {
+
+    const ulFrag = document.createDocumentFragment();
+
+
+    for (const key in data.categories) {
+        const li = document.createElement('li');
+        const sHtml = `<a class="dropdown-item" href='list_page.php?cat="${data.categories[key]}"'>${data.categories[key]}</a>`;
+        li.innerHTML = sHtml;
+        ulFrag.appendChild(li);
+    }
+
+    document.getElementById("drop").appendChild(ulFrag);
+
+
+}

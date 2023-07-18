@@ -26,25 +26,26 @@ if (!empty($_POST["milestoneName"])) {
 
     
     if (!empty($milestoneId) && empty($_GET["del"])) {
-        $query = 'UPDATE tbl_221_milestones SET milestone_name = "' . $milestoneName . '" ,end_date = "' . $endDate . '" ,bottles = "' . $bottles . '" ,cans = "' . $cans . '" ,boxes = "' . $boxes . '" ,milestone_photo = "' . $galleryBadge . '" WHERE milestone_id = "' . $milestoneId . '" ;';
-        
-    } elseif(!empty($milestoneId) && !empty($_GET["del"])) {
-        if($_SESSION["user_type"] == "admin"){
-            $query = 'DETETE FROM tbl_221_milestones WHERE milestone_id = '.$milestoneId.';';
-        }
-     
+        $query = 'UPDATE tbl_221_milestones SET milestone_name = "' . $milestoneName . '" ,end_date = "' . $endDate . '" ,bottles = "' . $bottles . '" ,cans = "' . $cans . '" ,boxes = "' . $boxes . '" ,milestone_photo = "' . $galleryBadge . '" WHERE milestone_id = "' . $milestoneId . '" ;';  
     }else{
         $query = "INSERT INTO tbl_221_milestones (milestone_name, end_date, bottles, cans, boxes, milestone_photo) 
                   VALUES ('$milestoneName', '$endDate', '$bottles', '$cans', '$boxes', '$galleryBadge')";
     }
-
+    
     if (!mysqli_query($connection, $query)) {
         echo "Error inserting data: " . mysqli_error($connection);
     }
     
+}else{
+    if(!empty($_GET['milestone_id']) && !empty($_GET["del"])) {
+        if($_SESSION["user_type"] == "admin"){
+            $query = 'DELETE FROM tbl_221_milestones WHERE milestone_id = '.$_GET['milestone_id'].';';
+            if (!mysqli_query($connection, $query)) {
+                echo "Error inserting data: " . mysqli_error($connection);
+            }
+        }
+    }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -144,7 +145,9 @@ if (!empty($_POST["milestoneName"])) {
                 echo "<h1 class='text-center'>The Milestone \"" . $milestoneName . "\" was";
                 if ($milestoneId) {
                     echo " updated succesfuly!</h1>";
-                } else {
+                } elseif($_GET['milestone_id']) {
+                    echo " deleted succesfuly!</h1>";
+                }else{
                     echo " added succesfuly!</h1>";
                 }
             }
@@ -184,6 +187,7 @@ if (!empty($_POST["milestoneName"])) {
 
 
 <?php
+
         mysqli_close($connection);
         ?>
 </body>

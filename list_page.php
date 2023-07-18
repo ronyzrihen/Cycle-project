@@ -15,15 +15,20 @@ if (isset($_SESSION['email'])) {
         echo "Failed to get data from the database.";
     }
     $query2 = "SELECT * FROM tbl_221_milestones";
-    $result2 = mysqli_query($connection, $query2);
-    if ($result2) {
-        $row2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
-    } else {
-        echo "Failed to retrieve data from the database.";
-    }
 } else {
     echo "Email is missing.";
 }
+$cat = $_GET['cat'];
+if (!empty($cat)) {
+        $query2 = "SELECT * FROM dbShnkr23stud2.tbl_221_milestones order by $cat desc;";
+}
+$result2 = mysqli_query($connection, $query2);
+if ($result2) {
+    $row2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+} else {
+    echo "Failed to retrieve data from the database.";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -120,11 +125,11 @@ if (isset($_SESSION['email'])) {
             </section>
 
             <h1 class="text-center container-fluid mt-5 mb-5">Milestones</h1>
-            <?php
-            if ($row['user_type'] == "admin") {
-                echo
-                    '<section class=" container.fluid d-flex mb-5 ms-3 ">
-                    <a href="cycle-form.php" id="new-milestone" class=" d-flex align-items-center">
+            <section class=" container-fluid d-flex mb-5 ms-3 ">
+                <?php
+                if ($row['user_type'] == "admin") {
+                    echo
+                        ' <a href="cycle-form.php" id="new-milestone" class=" d-flex align-items-center">
                         <i class="bi bi-plus-lg me-1 ms-3"></i>
                         <label class=" col-2 me-3">New Milestone</label>
                     </a>
@@ -132,13 +137,27 @@ if (isset($_SESSION['email'])) {
                         <i class="bi bi-pencil-square ms-3 me-2"></i>
                         <label class="me-3">Edit</label>
                     </button>
-                    <button href="#" class="d-flex align-items-center ms-2" id="delete">&nbsp
+                    <button  class="d-flex align-items-center ms-2" id="delete">&nbsp
                         <i class="bi bi-x-circle ms-2"></i>
                         <label class="me-3"> &nbspDelete</label>
                     </button>
-                </section>';
-            }
-            ?>
+                    <button class="d-flex align-items-center d-none ms-2" id="info">&nbsp
+                        <i class="bi bi-info-circle ms-2"></i>
+                        <label class="me-3"> &nbspDeselect</label>
+                    </button>';
+                }
+                ?>
+                <button class="dropdown-toggle col-4 ps-4 pe-4 ms-2 " id="sort" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><?php if(!empty($cat)){
+                      echo  $cat;
+                    }else{echo "Sort";}
+                     ?> </button>
+                <ul class="dropdown-menu col-1 " id="drop">
+                    <li><a class="dropdown-item" href="list_page.php">default</a></li>
+                </ul>
+            </section>
+
+
 
             <article class="container">
                 <?php

@@ -178,6 +178,8 @@ a label {
     color: #FFFFFF;
 }
 
+#sort,
+#info,
 #delete,
 #edit {
     position: relative;
@@ -189,6 +191,8 @@ a label {
 }
 
 .milestone-rectangle:hover,
+#sort:hover,
+#info:hover,
 #delete:hover,
 #edit:hover {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
