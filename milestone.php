@@ -1,12 +1,11 @@
 <?php 
-    include "db.php";
-    session_start();
-    if (!isset($_SESSION["user_id"])) {
-        header('Location: index.php');
-        exit();
-    }
-
-    include 'db.php';
+   include 'db.php';
+   include 'config.php';
+   session_start();
+   
+   if(!isset($_SESSION["user_id"])) {
+       header('Location: '.URL.'index.php');
+   }
 
     if (isset($_SESSION['email'])) {
         $email = $_SESSION['email'];
@@ -83,22 +82,15 @@
                             <p>profile</p>
                         </a>
                     </li>
-                    <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i><p>Home</p></a></li>
-                    <li><a href="list_page.php" id="humburger-selected"><i class="bi bi-trophy-fill fa-2xl"></i><p>Milestones</p></a></li>
-                    <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i><p>Users</p></a></li>
-                    <li>
-                        <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i>
-                            <P>Friend zone</P>
-                        </a>
-                    </li>
+                    <li><a href="#"><i class="bi bi-house-door-fill fa-2xl me-3"></i>Home</a></li>
+                    <li><a href="list_page.php" class="selected"><i class="bi bi-trophy-fill fa-2xl me-3 "></i>Milestones</a></li>
+                    <li><a href="#"><i class="bi bi-people-fill fa-2xl me-3"></i>Users</a></li>
+                    <li><a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl me-3"></i>Friend zone</a> </li>
                 </ul>
+
                 <ul id="aside-utils" class="d-flex flex-column justify-content-evenly ">
-                    <li><a href="#"><i class="bi bi-gear-fill fa-2xl"></i><p>Settings</p></a></li>
-                    <li>
-                        <a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl"></i>
-                            <p>Exit</p>
-                        </a>
-                    </li>
+                    <li><a href="#"><i class="bi bi-gear-fill fa-2xl me-3"></i>Settings</a></li>
+                    <li><a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl me-3"></i>Exit</a></li>
                 </ul>
             </div>
         </div>

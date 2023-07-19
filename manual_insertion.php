@@ -15,21 +15,7 @@ if (isset($_SESSION['email'])) {
     } else {
         echo "Failed to get data from the database.";
     }
-    $query2 = "SELECT * FROM tbl_221_milestones inner join tbl_221_badges using(badge_id)";
-} else {
-    echo "Email is missing.";
 }
-$cat = $_GET['cat'];
-if (!empty($cat)) {
-        $query2 = "SELECT * FROM tbl_221_milestones inner join tbl_221_badges using(badge_id) order by $cat desc;";
-}
-$result2 = mysqli_query($connection, $query2);
-if ($result2) {
-    $row2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
-} else {
-    echo "Failed to retrieve data from the database.";
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +28,7 @@ if ($result2) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
+
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -90,12 +76,13 @@ if ($result2) {
                 </ul>
             </div>
         </div>
+
     </header>
     <main class="d-flex flex-row-reverse">
         <aside class="d-md-flex d-none d-md-inline d-flex flex-column  ">
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
                 <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-                <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
+                <li><a href="list_page.php" class="selected"><i class="bi bi-trophy-fill fa-2xl "></i></a></li>
                 <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
                 <li>
                     <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
@@ -106,84 +93,23 @@ if ($result2) {
         <div id="wrapper" class="container">
 
             <section class="bread d-none d-md-block  mt-3 mb-3">
-                <a href="#" class="selected">Home</a>
-                <label>/ Milestones</label>
+                <a href="student_home_page.php" class="selected">Home</a>
+                <label>/ Manual Insertion</label>
             </section>
-
-            <h1 class="text-center container-fluid mt-5 mb-5">Milestones</h1>
-            <section class=" container-fluid d-md-flex mb-5 ms-3 ">
-               <section class = "container-fluid d-flex  mr-auto">
-                   <?php
-                if ($row['user_type'] == "admin") {
-                    echo
-                    ' <a href="cycle-form.php" id="new-milestone" class=" d-flex align-items-center">
-                    <i class="bi bi-plus-lg me-1 ms-3"></i>
-                    <label class=" col-2 me-3">New Milestone</label>
-                    </a>
-                    <button class="d-flex align-items-center ms-2" id="edit">
-                    <i class="bi bi-pencil-square ms-3 me-2"></i>
-                    <label class="me-3">Edit</label>
-                    </button>
-                    <button  class="d-flex align-items-center ms-2" id="delete">&nbsp
-                    <i class="bi bi-x-circle ms-2"></i>
-                    <label class="me-3"> &nbspDelete</label>
-                    </button>
-                    <button class="d-flex align-items-center d-none ms-2" id="info">&nbsp
-                    <i class="bi bi-info-circle ms-2"></i>
-                    <label class="me-3"> &nbspDeselect</label>
-                    </button>';
-                }
-                ?>
-                </section>
-                <button class="dropdown-toggle col-4  ps-4 pe-4 me-4 mt-3 mt-md-0" id="sort" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false"><?php if(!empty($cat)){
-                    echo  $cat;
-                }else{echo "Sort";}
-                ?> </button>
-                <ul class="dropdown-menu col-1 " id="drop">
-                    <li><a class="dropdown-item" href="list_page.php">default</a></li>
-                </ul>
-            </section>
+            <form action="" method="POST" >
+            <i class="fa-solid fa-database"></i>
+            <i class="fa-solid fa-bottle-water"></i>
+            <i class="fa-solid fa-box-open"></i>
+            </form>
 
 
 
-            <article class="container">
-                <?php
-                foreach ($row2 as $rows2) {
-                    echo '<section class="d-flex justify-content-evenly align-items-center milestone-rectangle container instance">';
-                    echo '<section class="col-md-3 left-list">';
-                    echo '<a href="milestone.php?milestone_id=' . $rows2["milestone_id"] . '"id = "milestone_link"><i class="bi bi-info-circle replaceable_icon"></i></a><br>';
-                    echo '<h5>"' . $rows2["milestone_name"] . '"</h5>';
-                    echo '<h5 class = "d-none d-md-block" >Until: ' . $rows2["end_date"] . '</h5>';
-                    echo '</section>';
-                    echo '<ul class="middle-list d-flex align-items-center justify-content-evenly col-6">';
-                    echo '<li>';
-                    echo '<i class="fa-solid fa-database"></i>';
-                    echo '<span class="text">' . $rows2["cans"] . '</span>';
-                    echo '</li>';
-                    echo '<li>';
-                    echo '<i class="fa-solid fa-bottle-water"></i>';
-                    echo '<span class="text">' . $rows2["bottles"] . '</span>';
-                    echo '</li>';
-                    echo '<li>';
-                    echo '<i class="fa-solid fa-box-open"></i>';
-                    echo '<span class="text">' . $rows2["boxes"] . '</span>';
-                    echo '</li>';
-                    echo '</ul>';
-                    echo '<section id="badge-section" class="col-3 d-none right-list d-md-flex flex-column align-items-center">';
-                    echo '<label class="badge" for="buttles up!">Badge</label>';
-                    echo '<img src="' . $rows2["badge_photo_path"] . '" alt="milestone photo">';
-                    echo '</section>';
-                    echo '</section>';
-                }
-                ?>
-            </article>
         </div>
     </main>
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-            <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
+            <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-2xl selected"></i></a></li>
             <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
             <li>
                 <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>

@@ -1,9 +1,10 @@
 <?php
 include 'db.php';
+include 'config.php';
 session_start();
-if (!isset($_SESSION["user_id"])) {
-    header('Location: index.php');
-    exit();
+
+if(!isset($_SESSION["user_id"])) {
+    header('Location: '.URL.'index.php');
 }
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
@@ -64,30 +65,15 @@ if (isset($_SESSION['email'])) {
                             <p>profile</p>
                         </a>
                     </li>
-                    <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i>
-                            <p>Home</p>
-                        </a></li>
-                    <li><a href="list_page.php" id="humburger-selected"><i class="bi bi-trophy-fill fa-2xl"></i>
-                            <p>Milestones</p>
-                        </a></li>
-                    <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i>
-                            <p>Users</p>
-                        </a></li>
-                    <li>
-                        <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i>
-                            <P>Friend zone</P>
-                        </a>
-                    </li>
+                    <li><a href="#"><i class="bi bi-house-door-fill fa-2xl me-3"></i>Home</a></li>
+                    <li><a href="list_page.php" class="selected"><i class="bi bi-trophy-fill fa-2xl me-3 "></i>Milestones</a></li>
+                    <li><a href="#"><i class="bi bi-people-fill fa-2xl me-3"></i>Users</a></li>
+                    <li><a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl me-3"></i>Friend zone</a> </li>
                 </ul>
+
                 <ul id="aside-utils" class="d-flex flex-column justify-content-evenly ">
-                    <li><a href="#"><i class="bi bi-gear-fill fa-2xl"></i>
-                            <p>Settings</p>
-                        </a></li>
-                    <li>
-                        <a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl"></i>
-                            <p>Exit</p>
-                        </a>
-                    </li>
+                    <li><a href="#"><i class="bi bi-gear-fill fa-2xl me-3"></i>Settings</a></li>
+                    <li><a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl me-3"></i>Exit</a></li>
                 </ul>
             </div>
         </div>
@@ -114,9 +100,13 @@ if (isset($_SESSION['email'])) {
             <h3 class = "d-md-none text-center text-muted">Press the cycle icon and start recycling!</h3>
             <h3 class = "d-none d-md-block text-center text-muted ">Click the cycle icon and start recycling!</h3>
             <section class="container-fluid d-flex justify-content-center p-5 ">
-                <button id="recycleLink" href="" class= "p-5 d-flex justify-content-center align-items-center  bg-light rounded-circle">
+                <button id="recycleBtn"class= " border-0 p-5 d-flex justify-content-center align-items-center  bg-light rounded-circle">
                     <i class=" fa-solid fa-recycle fa-10x" style="color: #62c462;"></i>
             </button>
+            <section class="d-flex ">
+                <a href="#" class="p-3 me-4 d-none d-flex justify-content-center align-items-center cycleLinks">Scan Cycle Bin</a>
+                <a href="manual_insertion.php" class="p-3 d-none d-flex justify-content-center align-items-center cycleLinks">Manual Insertion</a>
+            </section>
             </section>
             <div class="container-log col-12 ">
     <ul class="icon-list d-flex align-items-center mt-5 justify-content-evenly">
@@ -139,7 +129,7 @@ if (isset($_SESSION['email'])) {
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-            <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
+            <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-2xl selected"></i></a></li>
             <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
             <li>
                 <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>

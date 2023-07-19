@@ -13,7 +13,9 @@ window.onload = function() {
     let deleteBtn = document.getElementById("delete");
     if (infoBtn) {
         infoBtn.onclick = function() {
-            editAction("bi bi-info-circle replaceable_icon");
+
+
+            infoAction("bi bi-info-circle replaceable_icon");
             if (deleteBtn.classList.contains("text-danger")) {
                 deleteBtn.classList.remove("text-danger");
             }
@@ -71,13 +73,23 @@ function showInfoBtn() {
 }
 
 
+function infoAction(aClass) {
+    let instances = document.getElementsByClassName("instance");
+    for (let i = 0; i < instances.length; i++) {
+        instances[i].querySelector(".replaceable_icon").className = aClass;
+        instances[i].querySelector("a").removeAttribute("onclick");
+
+    }
+}
+
 function editAction(aClass) {
     let instances = document.getElementsByClassName("instance");
     for (let i = 0; i < instances.length; i++) {
         instances[i].querySelector(".replaceable_icon").className = aClass;
         instances[i].querySelector("a").onclick = function(e) {
             e.preventDefault();
-            location.replace("cycle-form" + instances[i].querySelector("a").getAttribute('href').slice(9));
+            let link = instances[i].querySelector("a").getAttribute('href');
+            location.replace("cycle-form" + link.slice(9));
         };
     }
 }
@@ -88,7 +100,8 @@ function deleteAction(aClass) {
         instances[i].querySelector(".replaceable_icon").className = aClass;
         instances[i].querySelector("a").onclick = function(e) {
             e.preventDefault();
-            location.replace("save_milestone" + instances[i].querySelector("a").getAttribute('href').slice(9) + "&del=1");
+            let link = instances[i].querySelector("a").getAttribute('href');
+            location.replace("save_milestone" + link.slice(9) + "&del=1");
         };
     }
 }

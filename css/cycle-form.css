@@ -178,6 +178,7 @@ a label {
     color: #FFFFFF;
 }
 
+.cycleLinks,
 #sort,
 #info,
 #delete,
@@ -190,6 +191,7 @@ a label {
     border: none;
 }
 
+.cycleLinks:hover,
 .milestone-rectangle:hover,
 #sort:hover,
 #info:hover,
@@ -375,8 +377,7 @@ aside a {
 }
 
 #save_card section:hover,
-.aside-selected,
-#humburger-selected,
+.selected,
 .bread>a,
 aside i:hover,
 .offcanvas-body a:hover,
@@ -417,14 +418,13 @@ ul {
     height: 500px;
 }
 
-.offcanvas-body a,
 footer a {
     color: #000000;
     display: flex;
     align-content: center;
 }
 
-.offcanvas-body a>p {
+.offcanvas-body a {
     margin-left: 20px;
     font-size: 24px;
 }
