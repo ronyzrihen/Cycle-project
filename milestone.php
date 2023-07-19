@@ -61,12 +61,12 @@
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
     <title>Milestomes</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/diagram.js"></script>
 </head>
 
 <body>
     <header class="d-flex align-items-center ">
-        <a href="list_page.html" id="logo" class="me-auto ms-5"></a>
+        <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
         <a href="#" class="me-5 d-none d-md-inline" id="user">
             <label><?php echo $row2['name']; ?></label>
             <img src=<?php echo $row2['users_picture']; ?> alt="user photo">
@@ -107,7 +107,7 @@
         <aside class="d-md-flex d-none d-md-inline d-flex flex-column  ">
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
                 <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-                <li><a href="list_page.html" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
+                <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
                 <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
                 <li>
                     <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
@@ -151,7 +151,7 @@
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-            <li><a href="list_page.html" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
+            <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
             <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
             <li>
                 <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>

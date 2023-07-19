@@ -162,44 +162,6 @@ function checkform() {
 };
 
 
-
-
-
-
-function diagram(yValues) {
-    var xValues = ["Finished", "Did not finish", "Did not participated"];
-    var barColors = [
-        "#62c462",
-        "#46a546",
-        "#468847"
-    ];
-
-    new Chart("myChart", {
-        type: "pie",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: "Students statistics"
-            }
-        }
-    });
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const icons = document.querySelectorAll('.icon-list i');
-    icons.forEach((icon, index) => {
-        icon.classList.add('move-' + (index + 1));
-    });
-});
-
 ///////////////////////////////////////////////////////////////////////////////////////
 
 function dropDown(data) {
@@ -209,7 +171,8 @@ function dropDown(data) {
 
     for (const key in data.categories) {
         const li = document.createElement('li');
-        const sHtml = `<a class="dropdown-item" href='list_page.php?cat="${data.categories[key]}"'>${data.categories[key]}</a>`;
+
+        const sHtml = `<a class="dropdown-item" href='list_page.php?cat=${data.categories[key].replace('"','')}'>${data.categories[key].replace('"','')}</a>`;
         li.innerHTML = sHtml;
         ulFrag.appendChild(li);
     }

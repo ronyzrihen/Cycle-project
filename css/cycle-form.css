@@ -578,6 +578,7 @@ footer>ul {
     font-weight: 600;
 }
 
+#recycleLink:hover,
 #save_card section:hover {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -590,3 +591,6 @@ footer>ul {
     max-height: 500px;
     max-width: fit-content;
 }
+
+
+/* ============================================ */

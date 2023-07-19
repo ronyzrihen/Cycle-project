@@ -47,6 +47,8 @@ if (!empty($_POST["loginMail"])) {
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/animation.js"></script>
+
     <title>Login to Cycle</title>
 </head>
 
