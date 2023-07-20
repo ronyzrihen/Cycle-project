@@ -28,7 +28,7 @@ if (isset($_SESSION['email'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-
+    <script src ="js/validation.js"></script>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -97,10 +97,16 @@ if (isset($_SESSION['email'])) {
                 <label>/ Manual Insertion</label>
             </section>
             <form action="" method="POST" >
+            <div class="form-floating mb-3 col-12">
+                            <input type="text" class="form-control required" id="milestoneName" <?php if (isset($flag)) {
+                                echo 'value ="' . $row3["milestone_name"] . '"';
+                            } ?> name="milestoneName"
+                                placeholder="Milestone Name"><label for="milstoneName">Milestone Name</label>
+                        </div>
             <div class="item-goal mt-5 ">
                             <h3 class = "text-center">Items Collected</h3>
-                            <label id="warning-label" class="mb-3">*Must have at least one item</label>
-                            <section class="row mb-5 ">
+                            <label id="warning-label" class="mb-3 d-flex justify-content-center">*Must have at least one item</label>
+                            <section class="row container-fluid d-flex justify-content-center mb-5 ">
                                 <div class="col-12 col-md-8 ">
                                     <div class="input-group ">
                                         <input type="number" name="bottles" class="form-control " id="numOfPlastics"
@@ -114,7 +120,7 @@ if (isset($_SESSION['email'])) {
                                     </div>
                                 </div>
                             </section>
-                            <section class="row mb-5 ">
+                            <section class="row mb-5 container-fluid d-flex justify-content-center ">
                                 <div class="col-12 col-md-8 ">
                                     <div class="input-group ">
                                         <input type="number" name="cans" class="form-control" id="numOfCans"
@@ -128,7 +134,7 @@ if (isset($_SESSION['email'])) {
                                     </div>
                                 </div>
                             </section>
-                            <section class="row mb-5 ">
+                            <section class="row mb-5 container-fluid d-flex justify-content-center ">
                                 <div class="col-12 col-md-8 ">
                                     <div class="input-group ">
                                         <input type="number" name="boxes" class="form-control" id="numOfBoxes"
@@ -142,7 +148,43 @@ if (isset($_SESSION['email'])) {
                                     </div>
                                 </div>
                             </section>
+                            <div class="input-group d-flex row justify-content-center mb-3" id="datepicker">
+                                <section class = "col-4">
+
+                                    <input type="date" class="form-control " id="Date" name="Date" <?php if (isset($flag)) {
+                                        echo 'value = ' . date($row3["end_date"]);
+                                    } ?>
+                                            placeholder="End date" aria-label="Input group example"
+                                            aria-describedby="datepicker">
+                                        </div>
+                                    </section>
                         </div>
+                        <section class ="d-flex row justify-content-center">
+
+                        <button id="share-btn" type="button" class="btn btn-success mt-5 col-8 col-md-4 align-self-center"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span>Just to make sure...</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <span> Are you sure you your milestone is ready to be submtted?</span>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <button type="submit" id="btnform" name="submit" value="submit"
+                                    class="btn btn-success">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        </section>
             </form>
 
 

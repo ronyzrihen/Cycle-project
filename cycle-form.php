@@ -58,7 +58,7 @@ if (isset($_GET['milestone_id'])) {
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/validation.js"></script>
     <title>Milestomes</title>
 </head>
 
@@ -204,22 +204,22 @@ if (isset($_GET['milestone_id'])) {
                             </div>
                         </div>
                         <div id="gallery" class="container d-flex flex-wrap">
-                        <?php
-                        foreach ($badge as $badge){
-                         echo '   
+                            <?php
+                            foreach ($badge as $badge) {
+                                echo '   
                             <label id="Badgeinput">
-                                <input type="radio" name="galleryBadge" value="'.$badge['badge_id'].'">
-                                <img src="'.$badge['badge_photo_path'].'" alt="'.$badge['badge_name'].'" title ="'.$badge['badge_name'].'">
+                                <input type="radio" name="galleryBadge" value="' . $badge['badge_id'] . '">
+                                <img src="' . $badge['badge_photo_path'] . '" alt="' . $badge['badge_name'] . '" title ="' . $badge['badge_name'] . '">
                             </label>';
-                        } ?>
-                           
+                            } ?>
+
                         </div>
                     </section>
                 </section>
-                <?php if(isset($_GET['milestone_id'])){
+                <?php if (isset($_GET['milestone_id'])) {
 
-                   echo '<input type="hidden" id="instanceId" name="milestone_id" value=" '.$flag.'">';
-                }?>
+                    echo '<input type="hidden" id="instanceId" name="milestone_id" value=" ' . $flag . '">';
+                } ?>
 
                 <button id="share-btn" type="button" class="btn btn-success mt-5 col-8 col-md-4 align-self-center"
                     data-bs-toggle="modal" data-bs-target="#exampleModal">Share to friend zone</button>
