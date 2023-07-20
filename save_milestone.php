@@ -168,7 +168,7 @@ if (!empty($_POST["Name"])) {
 <section id="save_card" class=" container d-flex flex-column  align-items-center  justify-content-evenly  ">
     <h2>details updated !</h2>
     <section class="text-center">
-        <a href="user-profile.php"><h3  id="button_rect" class ="p-4 d-flex justify-contant-center align-items-center">Go back to milestones</h3></a>
+        <a href="list_page.php"><h3  id="button_rect" class ="p-4 d-flex justify-contant-center align-items-center">Go back to milestones</h3></a>
     </section>
     <div class="container-log col-12 ">
         <ul class="icon-list d-flex align-items-center  justify-content-evenly">

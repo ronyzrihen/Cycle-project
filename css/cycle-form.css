@@ -178,6 +178,7 @@ a label {
     color: #FFFFFF;
 }
 
+.homePageBtn,
 #sort,
 #info,
 #delete,
@@ -190,6 +191,7 @@ a label {
     border: none;
 }
 
+.homePageBtn:hover,
 .milestone-rectangle:hover,
 #sort:hover,
 #info:hover,
@@ -287,7 +289,9 @@ li>i {
     align-items: center;
 }
 
+
 /* Add any other styles to the container and row as needed */
+
 .container-photo {
     position: relative;
     display: grid;
@@ -295,6 +299,7 @@ li>i {
     justify-content: center;
     margin-bottom: 50px;
 }
+
 
 /* ******************************************************************************** */
 
@@ -621,13 +626,11 @@ footer>ul {
 #button_rect {
     position: relative;
     height: 40px;
-    max-width:fit-content;
+    max-width: fit-content;
     background-color: #62C462;
     color: #ffffff;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-
-
 }
 
 #button_rect:hover {

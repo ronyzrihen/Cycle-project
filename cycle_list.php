@@ -54,7 +54,7 @@ if ($result2) {
 <body>
     <header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
-        <a href="#" class="me-5 d-none d-md-inline" id="user">
+        <a href="user_profile.php" class="me-5 d-none d-md-inline" id="user">
             <label>
                 <?php echo $row['name']; ?>
             </label>
@@ -70,7 +70,7 @@ if ($result2) {
             <div class="offcanvas-body">
                 <ul class="  d-flex flex-column justify-content-evenly">
                     <li>
-                        <a href="#" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
+                        <a href="user_profile.php" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
                             <p class = "ms-3">profile</p>
                         </a>
                     </li>
