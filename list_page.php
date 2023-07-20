@@ -18,10 +18,11 @@ if (isset($_SESSION['email'])) {
 } else {
     echo "Email is missing.";
 }
-if (!empty($cat)) {
+if (!empty($_GET['cat'])) {
     $cat = $_GET['cat'];
         $query2 = "SELECT * FROM tbl_221_milestones inner join tbl_221_badges using(badge_id) order by $cat desc;";
-}
+    
+}   
 $result2 = mysqli_query($connection, $query2);
 if ($result2) {
     $row2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
@@ -55,15 +56,15 @@ if ($result2) {
 </head>
 
 <body>
-    <header class="d-flex align-items-center ">
+<header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
         <a href="#" class="me-5 d-none d-md-inline" id="user">
             <label>
                 <?php echo $row['name']; ?>
             </label>
-            <img src=<?php echo $row['users_picture']; ?> alt="user photo">
+            <img src=<?php echo $row['users_picture']; ?> alt="<?php echo $row['name'];?>">
         </a>
-        <button class="navbar-toggler fa-solid fa-bars fa-2xl navbar-toggler-icon me-4" type="button"
+        <button class="navbar-toggler fa-solid fa-bars fa-xl navbar-toggler-icon me-4" type="button"
             data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"></button>
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
             id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -73,35 +74,52 @@ if ($result2) {
             <div class="offcanvas-body">
                 <ul class="  d-flex flex-column justify-content-evenly">
                     <li>
-                        <a href="#" id="profile"><img src="images/Dovrat.jpeg" alt="dovrat">
-                            <p>profile</p>
+                        <a href="#" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
+                            <p class = "ms-3">profile</p>
                         </a>
                     </li>
-                    <li><a href="#"><i class="bi bi-house-door-fill fa-2xl me-3"></i>Home</a></li>
-                    <li><a href="list_page.php" class="selected"><i class="bi bi-trophy-fill fa-2xl me-3 "></i>Milestones</a></li>
-                    <li><a href="#"><i class="bi bi-people-fill fa-2xl me-3"></i>Users</a></li>
-                    <li><a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl me-3"></i>Friend zone</a> </li>
+                    <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "#";}
+                    ?> "><i class="bi bi-house-door-fill fa-xl me-3"></i>Home</a></li>
+                    <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl me-3 "></i>Milestones</a></li>
+                   <?php
+                   if($_SESSION['user_type']=="student"){
+                       echo '<li><a href="cycle_list"><i class="bi bi-recycle fa-xl me-3"></i>Cycles</a></li>';
+                    }
+                       ?>
+                    <li><a href="#"><i class="bi bi-people-fill fa-xl me-3"></i>Users</a></li>
+                    <li><a href="#"> <i class="bi bi-chat-left-text-fill fa-xl me-3"></i>Friend zone</a> </li>
                 </ul>
 
                 <ul id="aside-utils" class="d-flex flex-column justify-content-evenly ">
-                    <li><a href="#"><i class="bi bi-gear-fill fa-2xl me-3"></i>Settings</a></li>
-                    <li><a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl me-3"></i>Exit</a></li>
+                    <li><a href="#"><i class="bi bi-gear-fill fa-xl me-3"></i>Settings</a></li>
+                    <li><a href="index.php"> <i class="bi bi-box-arrow-in-right fa-xl me-3"></i>Exit</a></li>
                 </ul>
             </div>
         </div>
     </header>
-    <main class="d-flex flex-row-reverse">
+        <main class="d-flex flex-row-reverse">
         <aside class="d-md-flex d-none d-md-inline d-flex flex-column  ">
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
-                <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-                <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
-                <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
+                <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "#";}
+                    ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
+                <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
+                
+                <?php
+                   if($_SESSION['user_type']=="student"){
+                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle  fa-xl"></i></a></li>';
+                    }
+                       ?>
+                
+                <li><a href="#"><i class="bi bi-people-fill fa-xl"></i></a></li>
                 <li>
-                    <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
+                    <a href="#"> <i class="bi bi-chat-left-text-fill fa-xl"></i> </a>
                 </li>
             </ul>
         </aside>
-
         <div id="wrapper" class="container">
 
             <section class="bread d-none d-md-block  mt-3 mb-3">
@@ -182,15 +200,23 @@ if ($result2) {
     </main>
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
-            <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-            <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
-            <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
+            <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "#";}
+                    ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
+            <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
+            <?php
+                   if($_SESSION['user_type']=="student"){
+                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle  fa-xl"></i></a></li>';
+                    }
+                       ?>
+            <li><a href="#"><i class="bi bi-people-fill fa-xl"></i></a></li>
             <li>
-                <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
+                <a href="#"> <i class="bi bi-chat-left-text-fill fa-xl"></i> </a>
             </li>
         </ul>
     </footer>
-   <script> galleryBadge()</script>
+   
 </body>
 </html>
 <?php

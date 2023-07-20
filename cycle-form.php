@@ -59,56 +59,71 @@ if (isset($_GET['milestone_id'])) {
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
     <script src="js/validation.js"></script>
-    <title>Milestomes</title>
+    <title>Milestone Form</title>
 </head>
 
 <body>
-    <header class="d-flex align-items-center ">
+<header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
         <a href="#" class="me-5 d-none d-md-inline" id="user">
             <label>
-                <?php echo $row2['name']; ?>
+                <?php echo $row['name']; ?>
             </label>
-            <img src=<?php echo $row2['users_picture']; ?> alt="user photo">
+            <img src=<?php echo $row['users_picture']; ?> alt="<?php echo $row['name'];?>">
         </a>
-        <button class="navbar-toggler fa-solid fa-bars fa-2xl navbar-toggler-icon me-4" type="button"
+        <button class="navbar-toggler fa-solid fa-bars fa-xl navbar-toggler-icon me-4" type="button"
             data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"></button>
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
             id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
             </div>
             <div class="offcanvas-body">
                 <ul class="  d-flex flex-column justify-content-evenly">
                     <li>
-                        <a href="#" id="profile"><img src="images/Dovrat.jpeg" alt="dovrat">
-                            <p>profile</p>
+                        <a href="#" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
+                            <p class = "ms-3">profile</p>
                         </a>
                     </li>
-                    <li><a href="#"><i class="bi bi-house-door-fill fa-2xl me-3"></i>Home</a></li>
-                    <li><a href="list_page.php" class="selected"><i
-                                class="bi bi-trophy-fill fa-2xl me-3 "></i>Milestones</a></li>
-                    <li><a href="#"><i class="bi bi-people-fill fa-2xl me-3"></i>Users</a></li>
-                    <li><a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl me-3"></i>Friend zone</a> </li>
+                    <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "#";}
+                    ?> "><i class="bi bi-house-door-fill fa-xl me-3"></i>Home</a></li>
+                    <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl me-3 "></i>Milestones</a></li>
+                   <?php
+                   if($_SESSION['user_type']=="student"){
+                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle fa-xl me-3"></i>Cycles</a></li>';
+                    }
+                       ?>
+                    <li><a href="#"><i class="bi bi-people-fill fa-xl me-3"></i>Users</a></li>
+                    <li><a href="#"> <i class="bi bi-chat-left-text-fill fa-xl me-3"></i>Friend zone</a> </li>
                 </ul>
 
                 <ul id="aside-utils" class="d-flex flex-column justify-content-evenly ">
-                    <li><a href="#"><i class="bi bi-gear-fill fa-2xl me-3"></i>Settings</a></li>
-                    <li><a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl me-3"></i>Exit</a></li>
+                    <li><a href="#"><i class="bi bi-gear-fill fa-xl me-3"></i>Settings</a></li>
+                    <li><a href="index.php"> <i class="bi bi-box-arrow-in-right fa-xl me-3"></i>Exit</a></li>
                 </ul>
             </div>
         </div>
     </header>
     <main class="d-flex flex-row-reverse">
-        <aside class="d-md-flex d-none d-md-inline d-flex flex-column  ">
-
+    <aside class="d-md-flex d-none d-md-inline d-flex flex-column  ">
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
-                <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-                <li><a href="#"><i class="bi bi-trophy-fill fa-2xl aside-selected"></i></a></li>
-                <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
+                <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "#";}
+                    ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
+                <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
+                
+                <?php
+                   if($_SESSION['user_type']=="student"){
+                       echo '<li><a href="cycle_link.php" ><i class="bi bi-recycle  fa-xl"></i></a></li>';
+                    }
+                       ?>
+                
+                <li><a href="#"><i class="bi bi-people-fill fa-xl"></i></a></li>
                 <li>
-                    <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
+                    <a href="#"> <i class="bi bi-chat-left-text-fill fa-xl"></i> </a>
                 </li>
             </ul>
         </aside>
@@ -123,10 +138,10 @@ if (isset($_GET['milestone_id'])) {
                 <section id="form-container" class="container d-md-flex ">
                     <section class="container">
                         <div class="form-floating mb-3 col-12">
-                            <input type="text" class="form-control required" id="milestoneName" <?php if (isset($flag)) {
+                            <input type="text" class="form-control required" id="Name" <?php if (isset($flag)) {
                                 echo 'value ="' . $row3["milestone_name"] . '"';
-                            } ?> name="milestoneName"
-                                placeholder="Milestone Name"><label for="milstoneName">Milestone Name</label>
+                            } ?> name="Name"
+                                placeholder="Milestone Name"><label for="Name">Milestone Name</label>
                         </div>
                         <section class="row mb-3">
                             <div class="col-5">
@@ -203,14 +218,25 @@ if (isset($_GET['milestone_id'])) {
                                 </button>
                             </div>
                         </div>
-                        <div id="gallery" class="container d-flex flex-wrap">
+                        <div id="gallery" class="container d-flex flex-wrap" >
+
                             <?php
+
                             foreach ($badge as $badge) {
-                                echo '   
-                            <label id="Badgeinput">
-                                <input type="radio" name="galleryBadge" value="' . $badge['badge_id'] . '">
-                                <img src="' . $badge['badge_photo_path'] . '" alt="' . $badge['badge_name'] . '" title ="' . $badge['badge_name'] . '">
-                            </label>';
+                                if($badge['badge_id']==$row3['badge_id']){
+                                    echo '   
+                                    <label>
+                                        <input type="radio" name="galleryBadge" value="' . $badge['badge_id'] . '" checked>
+                                        <img src="' . $badge['badge_photo_path'] . '" alt="' . $badge['badge_name'] . '" title ="' . $badge['badge_name'] . '">
+                                    </label>';
+                                }else{
+
+                                    echo '   
+                                    <label>
+                                    <input type="radio" name="galleryBadge" value="' . $badge['badge_id'] . '">
+                                    <img src="' . $badge['badge_photo_path'] . '" alt="' . $badge['badge_name'] . '" title ="' . $badge['badge_name'] . '">
+                                    </label>';
+                                }
                             } ?>
 
                         </div>
@@ -223,6 +249,7 @@ if (isset($_GET['milestone_id'])) {
 
                 <button id="share-btn" type="button" class="btn btn-success mt-5 col-8 col-md-4 align-self-center"
                     data-bs-toggle="modal" data-bs-target="#exampleModal">Share to friend zone</button>
+                    <label for="share-btn" id="badgeIndicator" class = "text-danger d-none container-fluid text-center" >*A badge must be selected</label>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -250,14 +277,21 @@ if (isset($_GET['milestone_id'])) {
     </main>
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
-            <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
-            <li><a href="#"><i class="bi bi-trophy-fill fa-2xl aside-selected"></i></a></li>
-            <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
+            <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "#";}
+                    ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
+            <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
+            <?php
+                   if($_SESSION['user_type']=="student"){
+                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle  fa-xl"></i></a></li>';
+                    }
+                       ?>
+            <li><a href="#"><i class="bi bi-people-fill fa-xl"></i></a></li>
             <li>
-                <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
+                <a href="#"> <i class="bi bi-chat-left-text-fill fa-xl"></i> </a>
             </li>
         </ul>
-
     </footer>
 </body>
 

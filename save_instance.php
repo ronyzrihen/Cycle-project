@@ -19,41 +19,36 @@ if (isset($_SESSION['email'])){
 }
 
 if (!empty($_POST["Name"])) {
-    $milestoneName = $_POST['Name'];
-    $endDate = $_POST['endDate'];
+    $instanceName = $_POST['Name'];
+    $cycleDate = $_POST['Date'];
     $bottles = $_POST['bottles'];
     $cans = $_POST['cans'];
     $boxes = $_POST['boxes'];
-    $galleryBadge = $_POST['galleryBadge'];
+    
 
 
    
-    if (!empty($_POST['milestone_id']) && empty($_GET["del"])) {
-        $query = 'UPDATE tbl_221_milestones SET milestone_name = "' . $milestoneName . '" ,end_date = "' . $endDate . '" ,bottles = "' . $bottles . '" ,cans = "' . $cans . '" ,boxes = "' . $boxes . '" ,badge_id = "' . $galleryBadge . '"  WHERE milestone_id = "' . $_POST['milestone_id'] . '" ;';
+    if (!empty($_POST['instanceId']) && empty($_GET["del"])) {
+        $query = "UPDATE dbShnkr23stud2.tbl_221_cycles SET milestoneID = '".$_POST['instanceId']."', cans = '".$cans."', bottles = '".$bottles."', boxes = '".$boxes."' ,cycleDate ='".$cycleDate."' WHERE cycleID = '" . $_POST['instanceId'] . "';";
+        echo $query;
     } else {
-        
-        $query = "INSERT INTO tbl_221_milestones (milestone_name, end_date, bottles, cans, boxes, badge_id) 
-                  VALUES ('$milestoneName', '$endDate', '$bottles', '$cans', '$boxes', '$galleryBadge')";
-        
+            $query = "INSERT INTO dbShnkr23stud2.tbl_221_cycles (userID,milestoneID,cycle_name, cans, bottles, boxes, cycleDate) VALUES 
+                ('".$_SESSION['user_id']."', '".$_POST['instanceId']."','$instanceName', '$cans', '$bottles', '$boxes', '$cycleDate')";
+        echo $query;
     }
     
     
-
     
+} else {
+    if (!empty($_GET['instanceId']) && !empty($_GET["del"])) {
+        
+        $query = 'DELETE FROM tbl_221_cycles WHERE cycleID = ' . $_GET['instanceId'] . ';';
+    
+        }
+    }
     if (!mysqli_query($connection, $query)) {
         echo "Error inserting data: " . mysqli_error($connection);
     }
-
-} else {
-    if (!empty($_GET['milestone_id']) && !empty($_GET["del"])) {
-        if ($_SESSION["user_type"] == "admin") {
-            $query = 'DELETE FROM tbl_221_milestones WHERE milestone_id = ' . $_GET['milestone_id'] . ';';
-            if (!mysqli_query($connection, $query)) {
-                echo "Error inserting data: " . mysqli_error($connection);
-            }
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -106,10 +101,10 @@ if (!empty($_POST["Name"])) {
                         echo "student_home_page.php";
                     }else{echo "#";}
                     ?> "><i class="bi bi-house-door-fill fa-xl me-3"></i>Home</a></li>
-                    <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl me-3 "></i>Milestones</a></li>
+                    <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl me-3 "></i>Milestones</a></li>
                    <?php
                    if($_SESSION['user_type']=="student"){
-                       echo '<li><a href="cycle_list.php"><i class="bi bi-recycle fa-xl me-3"></i>Cycles</a></li>';
+                       echo '<li><a href="#" class="selected"><i class="bi bi-recycle fa-xl me-3"></i>Cycles</a></li>';
                     }
                        ?>
                     <li><a href="#"><i class="bi bi-people-fill fa-xl me-3"></i>Users</a></li>
@@ -130,11 +125,11 @@ if (!empty($_POST["Name"])) {
                         echo "student_home_page.php";
                     }else{echo "#";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
-                <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
+                <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl"></i></a></li>
                 
                 <?php
                    if($_SESSION['user_type']=="student"){
-                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle  fa-xl"></i></a></li>';
+                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle selected fa-xl"></i></a></li>';
                     }
                        ?>
                 
@@ -149,26 +144,24 @@ if (!empty($_POST["Name"])) {
     <section id="save_card" class=" container d-flex flex-column  align-items-center  justify-content-evenly  ">
         
     <?php
-            if ($_SESSION["user_type"] != "admin") {
-                echo "<h1>You don't have the right permission!</h1>";
-            } else {
+           
 
-                echo "<h1 class='text-center'>Milestone was";
-                if (isset($_POST['milestone_id'])) {
-                    echo " updated succesfuly!</h1>";
-                } elseif (isset($_GET['milestone_id'])) {
-                    echo " deleted succesfuly!</h1>";
-                } else {
-                    echo " added succesfuly!</h1>";
-            }
-        }
-        
-            ?>
+                
+           if (isset($_POST['instance'])) {
+               echo "<h1 class='text-center'>Cycle was updated succesfuly!</h1>";
+           } elseif (!empty($_GET['instanceId']) && !empty($_GET["del"])) {
+               echo " <h1 class='text-center'>Cycle was deleted succesfuly!</h1>";
+           } else {
+               echo "<h1 class='text-center'>Cycle was added succesfuly!</h1>";
+       }
+   
+   
+       ?>
 
 <section id="save_card" class=" container d-flex flex-column  align-items-center  justify-content-evenly  ">
     <h2>details updated !</h2>
     <section class="text-center">
-        <a href="user-profile.php"><h3  id="button_rect" class ="p-4 d-flex justify-contant-center align-items-center">Go back to milestones</h3></a>
+        <a href="cycle_list.php"><h3  id="button_rect" class ="p-4 d-flex justify-contant-center align-items-center">Go back to Cycles</h3></a>
     </section>
     <div class="container-log col-12 ">
         <ul class="icon-list d-flex align-items-center  justify-content-evenly">
@@ -191,10 +184,10 @@ if (!empty($_POST["Name"])) {
                         echo "student_home_page.php";
                     }else{echo "#";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
-            <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
+            <li><a href="list_page.php" ><i class="bi bi-trophy-fill  fa-xl"></i></a></li>
             <?php
                    if($_SESSION['user_type']=="student"){
-                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle  fa-xl"></i></a></li>';
+                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle selected fa-xl"></i></a></li>';
                     }
                        ?>
             <li><a href="#"><i class="bi bi-people-fill fa-xl"></i></a></li>

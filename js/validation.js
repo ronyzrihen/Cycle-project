@@ -7,12 +7,26 @@ window.onload = function() {
 
 function checkform() {
     let flag = 0;
-    let aform = document.querySelector("form");
-    let name = document.querySelector("#milestoneName");
+    let galleryRadio = document.querySelectorAll("#gallery input");
+    let name = document.querySelector("#Name");
     let bottles = document.querySelector("#numOfPlastics");
     let cans = document.querySelector("#numOfCans");
     let boxes = document.querySelector("#numOfBoxes");
     let date = document.querySelector('#endDate');
+    let radioFlag = 0;
+
+    for (let i = 0; i < galleryRadio.length; i++) {
+        if (galleryRadio[i].checked) {
+            radioFlag = 1;
+        }
+    }
+    if (!radioFlag) {
+        flag = 1;
+        let indicator = document.getElementById("badgeIndicator");
+        if (indicator.classList.contains("d-none")) {
+            indicator.classList.remove("d-none");
+        }
+    }
 
     if (name.value == "") {
         if (!name.classList.contains('is-invalid'))
@@ -61,9 +75,11 @@ function checkform() {
     if (!boxes.classList.contains('is-valid'))
         boxes.classList.add('is-valid');
 
+    if (date) {
 
-    if (date.value != "" && !date.classList.contains('is-valid')) {
-        date.classList.add('is-valid');
+        if (date.value != "" && !date.classList.contains('is-valid')) {
+            date.classList.add('is-valid');
+        }
     }
 
     if (flag == 1) {
@@ -75,24 +91,10 @@ function checkform() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
+function galleryCheck() {
+
+    let photo = document.querySelectorAll('#gallery>label');
 
 
 
-
-
-
-// function galleryBadge() {
-//     const btn = document.querySelector('#Badgeinput');
-//     const radioButtons = document.querySelectorAll('input[name="galleryBadge"]');
-//     btn.addEventListener("click", () => {
-//         let selectedSize;
-//         for (const radioButton of radioButtons) {
-//             if (radioButton.checked) {
-//                 selectedSize = radioButton.value;
-//                 break;
-//             }
-//         }
-
-//                
-//     });
-// }
+}

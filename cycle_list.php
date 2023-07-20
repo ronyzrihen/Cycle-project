@@ -2,9 +2,8 @@
 include 'db.php';
 include 'config.php';
 session_start();
-
 if(!isset($_SESSION["user_id"])) {
-    header('Location: '.URL.'index.php');
+    header('Location: ' . URL . 'index.php');
 }
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
@@ -15,7 +14,18 @@ if (isset($_SESSION['email'])) {
     } else {
         echo "Failed to get data from the database.";
     }
+    $query2 = "SELECT * FROM dbShnkr23stud2.tbl_221_cycles WHERE userID ='".$_SESSION['user_id']."';";
+} else {
+    echo "Email is missing.";
 }
+
+$result2 = mysqli_query($connection, $query2);
+if ($result2) {
+    $row2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+} else {
+    echo "Failed to retrieve data from the database.";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -28,8 +38,7 @@ if (isset($_SESSION['email'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script src="js/animation.js"></script>
-    <script src="js/recycle.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -39,11 +48,11 @@ if (isset($_SESSION['email'])) {
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
-    <title>Milestone Home Page</title>
+    <title>cycles</title>
 </head>
 
 <body>
-<header class="d-flex align-items-center ">
+    <header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
         <a href="#" class="me-5 d-none d-md-inline" id="user">
             <label>
@@ -68,11 +77,11 @@ if (isset($_SESSION['email'])) {
                     <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
                     }else{echo "#";}
-                    ?> "><i class="bi bi-house-door-fill selected fa-xl me-3"></i>Home</a></li>
+                    ?> "><i class="bi bi-house-door-fill fa-xl me-3"></i>Home</a></li>
                     <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl me-3 "></i>Milestones</a></li>
                    <?php
                    if($_SESSION['user_type']=="student"){
-                       echo '<li><a href="cycle_list.php"><i class="bi bi-recycle fa-xl me-3"></i>Cycles</a></li>';
+                       echo '<li><a href="#" class="selected"><i class="bi bi-recycle fa-xl me-3"></i>Cycles</a></li>';
                     }
                        ?>
                     <li><a href="#"><i class="bi bi-people-fill fa-xl me-3"></i>Users</a></li>
@@ -87,17 +96,17 @@ if (isset($_SESSION['email'])) {
         </div>
     </header>
     <main class="d-flex flex-row-reverse">
-    <aside class="d-md-flex d-none d-md-inline d-flex flex-column  ">
+        <aside class="d-md-flex d-none d-md-inline d-flex flex-column  ">
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
                 <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
                     }else{echo "#";}
-                    ?>"><i class="bi bi-house-door-fill selected fa-xl"></i> </a></li>
+                    ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
                 <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl"></i></a></li>
                 
                 <?php
                    if($_SESSION['user_type']=="student"){
-                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle fa-xl"></i></a></li>';
+                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle selected fa-xl"></i></a></li>';
                     }
                        ?>
                 
@@ -111,37 +120,43 @@ if (isset($_SESSION['email'])) {
         <div id="wrapper" class="container">
 
             <section class="bread d-none d-md-block  mt-3 mb-3">
-                <label>Home</label>
+                <a href="student_home_page.php" class="selected">Home</a>
+                <label>/ Cycles</label>
             </section>
 
-            <h1 class="text-center container-fluid mt-5 mb-5">Let's Cycle!</h1>
-            <h3 class = "d-md-none text-center text-muted">Press the cycle icon and start recycling!</h3>
-            <h3 class = "d-none d-md-block text-center text-muted ">Click the cycle icon and start recycling!</h3>
-            <section class="container-fluid d-flex justify-content-center p-5 ">
-                <button id="recycleBtn"class= " border-0 p-5 d-flex justify-content-center align-items-center  bg-light rounded-circle">
-                    <i class=" fa-solid fa-recycle fa-10x" style="color: #62c462;"></i>
-            </button>
-            <section class="d-flex ">
-                <a href="#" class="p-3 me-4 homePageBtn d-none d-flex justify-content-center align-items-center cycleLinks">Scan Cycle Bin</a>
-                <a href="manual_insertion.php" class="p-3 d-none  homePageBtn d-flex justify-content-center align-items-center cycleLinks">Manual Insertion</a>
-            </section>
-            </section>
-            <div class="container-log col-12 ">
-    <ul class="icon-list d-flex align-items-center mt-5 justify-content-evenly">
-        <li>
-            <i class="fa-solid fa-database"></i>
-        </li>
-        <li>
-            <i class="fa-solid fa-bottle-water"></i>
-        </li>
-        <li>
-            <i class="fa-solid fa-box-open"></i>
-        </li>
-    </ul>
-</div>
+            <h1 class="text-center container-fluid mt-5 mb-5">Cycles</h1>
+        
 
-
-
+            <article class="container">
+                <?php
+                foreach ($row2 as $rows2) {
+                    echo '<section class="d-flex justify-content-evenly align-items-center milestone-rectangle container instance">';
+                    echo    '<section class="col-md-3 left-list col-4">';
+                    echo        '<section class= "d-flex mb-4" >';
+                    echo        '<a href="manual_insertion.php?instanceId=' . $rows2["cycleID"] . '" class = "me-3"><i class="bi bi-pencil-square"></i></a><br>';
+                    echo        '<a href="save_instance.php?instanceId=' . $rows2["cycleID"] . '&del=1"><i class="bi bi-x-circle"></i></a><br>';
+                    echo        '</section>';
+                    echo        '<h5>"' . $rows2["cycle_name"] . '"</h5>';
+                    echo        '<h5 class = "d-none d-md-block" >Date: ' . $rows2["cycleDate"] . '</h5>';
+                    echo    '</section>';
+                    echo    '<ul class="middle-list d-flex align-items-center justify-content-evenly col-6 col-md-8">';
+                    echo        '<li class="d-flex flex-column align-items-center">';
+                    echo            '<i class="fa-solid fa-database"></i>';
+                    echo            '<span class="text-center">' . $rows2["cans"] . '</span>';
+                    echo        '</li>';
+                    echo        '<li class="d-flex flex-column align-items-center">';
+                    echo            '<i class="fa-solid fa-bottle-water"></i>';
+                    echo            '<span class="text-center">' . $rows2["bottles"] . '</span>';
+                    echo        '</li>';
+                    echo        '<li class="d-flex flex-column align-items-center">';
+                    echo            '<i class="fa-solid fa-box-open"></i>';
+                    echo            '<span class="text-center">' . $rows2["boxes"] . '</span>';
+                    echo        '</li>';
+                    echo    '</ul>';
+                    echo '</section>';
+                }
+                ?>
+            </article>
         </div>
     </main>
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
@@ -149,11 +164,11 @@ if (isset($_SESSION['email'])) {
             <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
                     }else{echo "#";}
-                    ?>"><i class="bi bi-house-door-fill selected fa-xl"></i> </a></li>
-            <li><a href="list_page.php" ><i class="bi bi-trophy-fill  fa-xl"></i></a></li>
+                    ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
+            <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl"></i></a></li>
             <?php
                    if($_SESSION['user_type']=="student"){
-                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle  fa-xl"></i></a></li>';
+                       echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle selected fa-xl"></i></a></li>';
                     }
                        ?>
             <li><a href="#"><i class="bi bi-people-fill fa-xl"></i></a></li>
@@ -163,7 +178,6 @@ if (isset($_SESSION['email'])) {
         </ul>
     </footer>
 </body>
-
 </html>
 <?php
 mysqli_close($connection);
