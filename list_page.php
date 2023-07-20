@@ -111,30 +111,31 @@ if ($result2) {
 
             <h1 class="text-center container-fluid mt-5 mb-5">Milestones</h1>
             <section class=" container-fluid d-md-flex mb-5 ms-3 ">
-               <section class = "container-fluid d-flex  mr-auto">
+               <section class = "container-fluid d-flex flex-wrap mr-auto">
                    <?php
                 if ($row['user_type'] == "admin") {
                     echo
-                    ' <a href="cycle-form.php" id="new-milestone" class=" d-flex align-items-center">
+                    ' 
+                    <a href="cycle-form.php" id="new-milestone" class=" mt-3 d-flex align-items-center">
                     <i class="bi bi-plus-lg me-1 ms-3"></i>
                     <label class=" col-2 me-3">New Milestone</label>
                     </a>
-                    <button class="d-flex align-items-center ms-2" id="edit">
+                    <button class="d-flex align-items-center mt-3  ms-2" id="edit">
                     <i class="bi bi-pencil-square ms-3 me-2"></i>
                     <label class="me-3">Edit</label>
                     </button>
-                    <button  class="d-flex align-items-center ms-2" id="delete">&nbsp
+                    <button  class="d-flex align-items-center mt-3 ms-2" id="delete">&nbsp
                     <i class="bi bi-x-circle ms-2"></i>
                     <label class="me-3"> &nbspDelete</label>
                     </button>
-                    <button class="d-flex align-items-center d-none ms-2" id="info">&nbsp
+                    <button class="d-flex align-items-center d-none mt-3 ms-2" id="info">&nbsp
                     <i class="bi bi-info-circle ms-2"></i>
                     <label class="me-3"> &nbspDeselect</label>
                     </button>';
                 }
                 ?>
                 </section>
-                <button class="dropdown-toggle col-4  ps-4 pe-4 me-4 mt-3 mt-md-0" id="sort" type="button" data-bs-toggle="dropdown"
+                <button class="dropdown-toggle col-4  ps-4 pe-4 me-4 ms-3 ms-md-0 mt-3 mt-md-0" id="sort" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false"><?php if(!empty($cat)){
                     echo  $cat;
                 }else{echo "Sort";}
