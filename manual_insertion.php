@@ -97,9 +97,52 @@ if (isset($_SESSION['email'])) {
                 <label>/ Manual Insertion</label>
             </section>
             <form action="" method="POST" >
-            <i class="fa-solid fa-database"></i>
-            <i class="fa-solid fa-bottle-water"></i>
-            <i class="fa-solid fa-box-open"></i>
+            <div class="item-goal mt-5 ">
+                            <h3 class = "text-center">Items Collected</h3>
+                            <label id="warning-label" class="mb-3">*Must have at least one item</label>
+                            <section class="row mb-5 ">
+                                <div class="col-12 col-md-8 ">
+                                    <div class="input-group ">
+                                        <input type="number" name="bottles" class="form-control " id="numOfPlastics"
+                                            placeholder="Number of plastics " <?php if (isset($flag)) {
+                                                echo 'value ="' . $row3["bottles"] . '"';
+                                            } ?> aria-label="Input group example "
+                                            aria-describedby="bottles " min=0>
+                                        <span class="input-group-text " id="bottles ">
+                                            <i class="fa-solid fa-bottle-water fa-lg "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row mb-5 ">
+                                <div class="col-12 col-md-8 ">
+                                    <div class="input-group ">
+                                        <input type="number" name="cans" class="form-control" id="numOfCans"
+                                            placeholder="Number of cans " <?php if (isset($flag)) {
+                                                echo 'value ="' . $row3["cans"] . '"';
+                                            } ?> aria-label="Input group example "
+                                            aria-describedby="cans " min=0>
+                                        <span class="input-group-text " id="cans ">
+                                            <i class="bi bi-database-fill fa-lg "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="row mb-5 ">
+                                <div class="col-12 col-md-8 ">
+                                    <div class="input-group ">
+                                        <input type="number" name="boxes" class="form-control" id="numOfBoxes"
+                                            placeholder="Number of cardboards " <?php if (isset($flag)) {
+                                                echo 'value ="' . $row3["boxes"] . '"';
+                                            } ?> aria-label="Input group example "
+                                            aria-describedby="boxes " min=0>
+                                        <span class="input-group-text " id="boxes ">
+                                            <i class="fa-solid fa-box-open fa-lg "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
             </form>
 
 

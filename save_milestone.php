@@ -20,7 +20,6 @@ if (isset($_SESSION['email'])){
 
 if (!empty($_POST["milestoneName"])) {
     $milestoneName = $_POST['milestoneName'];
-    $milestoneId = $_POST['milestone_id'];
     $endDate = $_POST['endDate'];
     $bottles = $_POST['bottles'];
     $cans = $_POST['cans'];
@@ -28,9 +27,9 @@ if (!empty($_POST["milestoneName"])) {
     $galleryBadge = $_POST['galleryBadge'];
 
 
-
-    if (!empty($milestoneId) && empty($_GET["del"])) {
-        $query = 'UPDATE tbl_221_milestones SET milestone_name = "' . $milestoneName . '" ,end_date = "' . $endDate . '" ,bottles = "' . $bottles . '" ,cans = "' . $cans . '" ,boxes = "' . $boxes . '" ,badge_id = "' . $galleryBadge . '"  WHERE milestone_id = "' . $milestoneId . '" ;';
+   
+    if (!empty($_POST['milestone_id']) && empty($_GET["del"])) {
+        $query = 'UPDATE tbl_221_milestones SET milestone_name = "' . $milestoneName . '" ,end_date = "' . $endDate . '" ,bottles = "' . $bottles . '" ,cans = "' . $cans . '" ,boxes = "' . $boxes . '" ,badge_id = "' . $galleryBadge . '"  WHERE milestone_id = "' . $_POST['milestone_id'] . '" ;';
     } else {
         
             $query = "INSERT INTO tbl_221_milestones (milestone_name, end_date, bottles, cans, boxes, badge_id) 
@@ -135,15 +134,16 @@ if (!empty($_POST["milestoneName"])) {
                 echo "<h1>You don't have the right permission!</h1>";
             } else {
 
-                echo "<h1 class='text-center'>The Milestone \"" . $milestoneName . "\" was";
-                if ($milestoneId) {
+                echo "<h1 class='text-center'>Milestone was";
+                if (isset($_POST['milestone_id'])) {
                     echo " updated succesfuly!</h1>";
-                } elseif ($_GET['milestone_id']) {
+                } elseif (isset($_GET['milestone_id'])) {
                     echo " deleted succesfuly!</h1>";
                 } else {
                     echo " added succesfuly!</h1>";
-                }
             }
+        }
+        
             ?>
 
             <section class=" container col-4 text-center">

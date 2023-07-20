@@ -194,3 +194,21 @@ function dropDown(data) {
 
 
 }
+
+
+
+
+function galleryBadge() {
+        const btn = document.querySelector('#Badgeinput');        
+        const radioButtons = document.querySelectorAll('input[name="galleryBadge"]');
+        btn.addEventListener("click", () => {
+            let selectedSize;
+            for (const radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    selectedSize = radioButton.value;
+                    break;
+                }
+            }
+    
+        });
+}

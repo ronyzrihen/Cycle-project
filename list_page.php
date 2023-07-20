@@ -2,9 +2,8 @@
 include 'db.php';
 include 'config.php';
 session_start();
-
 if(!isset($_SESSION["user_id"])) {
-    header('Location: '.URL.'index.php');
+    header('Location: ' . URL . 'index.php');
 }
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
@@ -19,8 +18,8 @@ if (isset($_SESSION['email'])) {
 } else {
     echo "Email is missing.";
 }
-$cat = $_GET['cat'];
 if (!empty($cat)) {
+    $cat = $_GET['cat'];
         $query2 = "SELECT * FROM tbl_221_milestones inner join tbl_221_badges using(badge_id) order by $cat desc;";
 }
 $result2 = mysqli_query($connection, $query2);
@@ -190,8 +189,8 @@ if ($result2) {
             </li>
         </ul>
     </footer>
+   <script> galleryBadge()</script>
 </body>
-
 </html>
 <?php
 mysqli_close($connection);

@@ -207,7 +207,7 @@ if (isset($_GET['milestone_id'])) {
                         <?php
                         foreach ($badge as $badge){
                          echo '   
-                            <label>
+                            <label id="Badgeinput">
                                 <input type="radio" name="galleryBadge" value="'.$badge['badge_id'].'">
                                 <img src="'.$badge['badge_photo_path'].'" alt="'.$badge['badge_name'].'" title ="'.$badge['badge_name'].'">
                             </label>';
@@ -216,8 +216,10 @@ if (isset($_GET['milestone_id'])) {
                         </div>
                     </section>
                 </section>
-                <input type="hidden" name="galleryBadge" value="<?php echo $row3['badge_id']; ?>">
-                <input type="hidden" id="instanceId" name="milestone_id" value="<?php echo $flag; ?>">
+                <?php if(isset($_GET['milestone_id'])){
+
+                   echo '<input type="hidden" id="instanceId" name="milestone_id" value=" '.$flag.'">';
+                }?>
 
                 <button id="share-btn" type="button" class="btn btn-success mt-5 col-8 col-md-4 align-self-center"
                     data-bs-toggle="modal" data-bs-target="#exampleModal">Share to friend zone</button>
@@ -263,7 +265,7 @@ if (isset($_GET['milestone_id'])) {
 <?php
 
 mysqli_free_result($result2);
-mysqli_free_result($result3);
+
 mysqli_close($connection);
 
 ?>

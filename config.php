@@ -1,2 +1,2 @@
 <?php 
-    define("URL","http://localhost:8080/Cycle/");
+   define("URL" , "http://localhost/rony/");
