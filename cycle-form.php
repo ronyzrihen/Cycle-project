@@ -20,9 +20,7 @@ if (isset($_SESSION['email'])) {
 
 $badgeQuary = "SELECT * FROM tbl_221_badges;";
 $badgeResult = mysqli_query($connection, $badgeQuary);
-if ($badgeResult) {
-    $badge = mysqli_fetch_all($badgeResult, MYSQLI_ASSOC);
-} else {
+if (!$badgeResult) {
     echo "Failed to retrieve data from the database.";
 }
 
@@ -219,7 +217,7 @@ if (isset($_GET['milestone_id'])) {
 
                             <?php
 
-                            foreach ($badge as $badge) {
+                            while($badge = mysqli_fetch_assoc($badgeResult)) {
                                     echo   
                                     '<label>
                                         <input type="radio" name="galleryBadge" value="' . $badge['badge_id'] . '" checked>

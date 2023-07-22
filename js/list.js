@@ -86,7 +86,7 @@ function editAction(aClass) {
         instances[i].querySelector("a").onclick = function(e) {
             e.preventDefault();
             let link = instances[i].querySelector("a").getAttribute('href');
-            location.replace("cycle-form" + link.slice(9));
+            location.replace("http://se.shenkar.ac.il/software-engineers/Cycle/cycle-form" + link.slice(9));
         };
     }
 }
@@ -98,7 +98,7 @@ function deleteAction(aClass) {
         instances[i].querySelector("a").onclick = function(e) {
             e.preventDefault();
             let link = instances[i].querySelector("a").getAttribute('href');
-            location.replace("save_milestone" + link.slice(9) + "&del=1");
+            location.replace("http://se.shenkar.ac.il/software-engineers/Cycle/save_milestone" + link.slice(9) + "&del=1");
         };
     }
 }
