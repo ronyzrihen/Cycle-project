@@ -20,8 +20,7 @@ $milestonesQuary = "SELECT * FROM dbShnkr23stud2.tbl_221_milestones;";
  
 $milestonesResult = mysqli_query($connection, $milestonesQuary);
 if ($milestonesResult) {
-    $milestonesRow = mysqli_fetch_all($milestonesResult, MYSQLI_ASSOC);
-} else {
+
     echo "Failed to retrieve data from the database.";
 }
 
@@ -192,7 +191,7 @@ echo $studentQuary;
                         <label for="milestoneSelect">Milestone</label>
                         <select name = "instance" class="form-select col-4" aria-label=" select example" id="milestoneSelect">
                             
-                            <?php foreach($milestonesRow as $milestonesRow){
+                            <?php while($milestonesRow = mysqli_fetch_assoc($milestonesResult)){
                                 echo  "<option value='".$milestonesRow["milestone_id"]."'>".$milestonesRow['milestone_name']."</option>";
                             }
                             ?>

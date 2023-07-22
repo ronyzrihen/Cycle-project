@@ -30,11 +30,11 @@ if (!empty($_POST["Name"])) {
    
     if (!empty($_POST['instanceId']) && empty($_GET["del"])) {
         $query = "UPDATE dbShnkr23stud2.tbl_221_cycles SET milestoneID = '".$_POST['instanceId']."', cans = '".$cans."', bottles = '".$bottles."', boxes = '".$boxes."' ,cycleDate ='".$cycleDate."' WHERE cycleID = '" . $_POST['instanceId'] . "';";
-        echo $query;
+        
     } else {
             $query = "INSERT INTO dbShnkr23stud2.tbl_221_cycles (userID,milestoneID,cycle_name, cans, bottles, boxes, cycleDate) VALUES 
                 ('".$_SESSION['user_id']."', '".$_POST['instanceId']."','$instanceName', '$cans', '$bottles', '$boxes', '$cycleDate')";
-        echo $query;
+        
     }
     
     

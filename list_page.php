@@ -17,19 +17,16 @@ if (isset($_SESSION['email'])) {
 } else {
     echo "Email is missing.";
 }
+
+$query2 = "SELECT * FROM tbl_221_milestones INNER JOIN tbl_221_badges USING (badge_id);";
+
 if (!empty($_GET['cat'])) {
     $cat = $_GET['cat'];
     $query2 = "SELECT * FROM tbl_221_milestones INNER JOIN tbl_221_badges USING (badge_id) ORDER BY $cat DESC;";
-    $result2 = mysqli_query($connection, $query2);
-
-    if ($result2) {
-        $row2 = array();
-        while ($row1 = mysqli_fetch_assoc($result2)) {
-            $row2[] = $row1;
-        }
-    } else {
-        echo "Failed to retrieve data from the database.";
-    }
+}
+$result2 = mysqli_query($connection, $query2);
+if (!$result2) {
+    echo "Failed to retrieve data from the database.";
 }
  
 
@@ -168,40 +165,44 @@ if (!empty($_GET['cat'])) {
 
             <article class="container">
 
-    <?php if (isset($row2) && is_array($row2)): ?>
-    <?php foreach ($row2 as $rows1): ?>
+    
+    <?php
+     while($rows1 = mysqli_fetch_assoc($result2)){ 
+        echo'
         <section class="d-flex justify-content-evenly align-items-center milestone-rectangle container instance">
             <section class="col-md-3 left-list">
-                <a href="milestone.php?milestone_id=<?= $rows1["milestone_id"]; ?>" id="milestone_link">
+                <a href="milestone.php?milestone_id='.$rows1["milestone_id"].'" id="milestone_link">
                     <i class="bi bi-info-circle replaceable_icon"></i>
                 </a><br>
-                <h5><?= $rows1["milestone_name"]; ?></h5>
-                <h5 class="d-none d-md-block">Until: <?= $rows1["end_date"]; ?></h5>
+                <h5>'.$rows1["milestone_name"].'</h5>
+                <h5 class="d-none d-md-block">  '.$rows1["end_date"].'</h5>
             </section>
             <ul class="middle-list d-flex align-items-center justify-content-evenly col-6">
                 <li>
                     <i class="fa-solid fa-database"></i>
-                    <span class="text"><?= $rows1["cans"]; ?></span>
+                    <span class="text">'.$rows1["cans"].'</span>
                 </li>
                 <li>
                     <i class="fa-solid fa-bottle-water"></i>
-                    <span class="text"><?= $rows1["bottles"]; ?></span>
+                    <span class="text">'.$rows1["bottles"].'</span>
                 </li>
                 <li>
                     <i class="fa-solid fa-box-open"></i>
-                    <span class="text"><?= $rows1["boxes"]; ?></span>
+                    <span class="text">'.$rows1["boxes"].'</span>
                 </li>
             </ul>
             <section id="badge-section" class="col-3 d-none right-list d-md-flex flex-column align-items-center">
                 <label class="badge" for="bottles up!">Badge</label>
-                <img src="<?= $rows1["badge_photo_path"]; ?>" alt="milestone photo">
+                <img src="'.$rows1["badge_photo_path"].'" alt="milestone photo">
             </section>
         </section>
-    <?php endforeach; ?>
-<?php endif; ?>
+            ';}
+    ?>
+
             </article>
         </div>
     </main>
+    
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="<?php if($_SESSION['user_type']=='student'){
@@ -215,9 +216,7 @@ if (!empty($_GET['cat'])) {
                     }
                        ?>
             <li><a href="#"><i class="bi bi-people-fill fa-xl"></i></a></li>
-            <li>
-                <a href="#"> <i class="bi bi-chat-left-text-fill fa-xl"></i> </a>
-            </li>
+            <li><a href="#"> <i class="bi bi-chat-left-text-fill fa-xl"></i></a></li>
         </ul>
     </footer>
 </body>

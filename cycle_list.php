@@ -8,7 +8,7 @@ if(!isset($_SESSION["user_id"])) {
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
     $query = "SELECT * FROM tbl_221_users WHERE email = '" . $email . "'";
-    $result = _query($connection, $query);
+    $result = mysqli_query($connection, $query);
     if ($result) {
         $row = mysqli_fetch_assoc($result);
     } else {
@@ -20,9 +20,8 @@ if (isset($_SESSION['email'])) {
 }
 
 $result2 = mysqli_query($connection, $query2);
-if ($result2) {
-    $row2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
-} else {
+if (!$result2) {
+
     echo "Failed to retrieve data from the database.";
 }
 ?>
@@ -126,7 +125,7 @@ if ($result2) {
 
             <article class="container">
                 <?php
-                foreach ($row2 as $rows2) {
+                while($rows2 = mysqli_fetch_assoc($result2)) {
                     echo '<section class="d-flex justify-content-evenly align-items-center milestone-rectangle container instance">';
                     echo    '<section class="col-md-3 left-list col-4">';
                     echo        '<section class= "d-flex mb-4" >';

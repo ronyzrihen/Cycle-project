@@ -137,7 +137,7 @@
             <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
             <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
             <li>
-                <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
+                <a href="index.php"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
             </li>
         </ul>
     </footer>
