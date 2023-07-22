@@ -1,5 +1,6 @@
 <?php 
     include "db.php";
+    include 'config.php';
     session_start();
     if (!isset($_SESSION["user_id"])) {
         header('Location: index.php');
@@ -42,7 +43,6 @@
     <title>edit user</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
-
 <body>
     <header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
@@ -62,7 +62,10 @@
                             <p>profile</p>
                         </a>
                     </li>
-                    <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i><p>Home</p></a></li>
+                    <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "list_page.php";}
+                    ?>"><i class="bi bi-house-door-fill fa-2xl"></i><p>Home</p></a></li>
                     <li><a href="list_page.php"><i class="bi bi-trophy-fill fa-2xl"></i><p>Milestones</p></a></li>
                     <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i><p>Users</p></a></li>
                     <li>
@@ -74,7 +77,7 @@
                 <ul id="aside-utils" class="d-flex flex-column justify-content-evenly ">
                     <li><a href="#"><i class="bi bi-gear-fill fa-2xl"></i><p>Settings</p></a></li>
                     <li>
-                        <a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl"></i>
+                        <a href="index.php"> <i class="bi bi-box-arrow-in-right fa-2xl"></i>
                             <p>Exit</p>
                         </a>
                     </li>
@@ -111,7 +114,7 @@
                     <input type="email" class="form-control required"  <?php echo 'value ="'.$row["email"].'"';?> name="email" placeholder="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" for="email" required><label>email</label>
                 </div>
                 <div class="form-floating mb-3 col-12">
-                    <input type="tel" class="form-control required"  <?php echo 'value ="'.$row["phone"].'"';?> name="phone" placeholder="phone"  pattern = "[0-9]{9,10}"  for="phone" required><label>phone number</label>
+                    <input type="tel" class="form-control required"  <?php echo 'value ="'.$row["phone"].'"';?> name="phone" placeholder="phone"  pattern = "[0-9]{10}"  for="phone" required><label>phone number</label>
                 </div>
                 <section class="container-fluid d-flex justify-content-center">
                     <button id="share-btn" type="submit" class="btn btn-success mt-5 col-8 col-md-4 align-self-center" data-bs-toggle="modal" data-bs-target="#exampleModal">submit changes</button>
@@ -121,7 +124,10 @@
     </main>
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
-            <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
+            <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "list_page.php";}
+                    ?>"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
             <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
             <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
             <li>

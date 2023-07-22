@@ -27,9 +27,8 @@ if ($badgeResult) {
 }
 
 if (isset($_GET['milestone_id'])) {
-    $flag = $_GET['milestone_id'];
 
-    $query3 = "SELECT * FROM tbl_221_milestones WHERE milestone_id = " . $flag;
+    $query3 = "SELECT * FROM tbl_221_milestones WHERE milestone_id = " . $_GET['milestone_id'];
     $result3 = mysqli_query($connection, $query3);
     if ($result3) {
         $row3 = mysqli_fetch_assoc($result3);
@@ -41,7 +40,6 @@ if (isset($_GET['milestone_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,15 +59,14 @@ if (isset($_GET['milestone_id'])) {
     <script src="js/validation.js"></script>
     <title>Milestone Form</title>
 </head>
-
 <body>
 <header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
-        <a href="#" class="me-5 d-none d-md-inline" id="user">
+        <a href="user-profile.php" class="me-5 d-none d-md-inline" id="user">
             <label>
-                <?php echo $row['name']; ?>
+                <?php echo $row2['name']; ?>
             </label>
-            <img src=<?php echo $row['users_picture']; ?> alt="<?php echo $row['name'];?>">
+            <img src=<?php echo $row2['users_picture']; ?> alt="<?php echo $row2['name'];?>">
         </a>
         <button class="navbar-toggler fa-solid fa-bars fa-xl navbar-toggler-icon me-4" type="button"
             data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"></button>
@@ -81,13 +78,13 @@ if (isset($_GET['milestone_id'])) {
             <div class="offcanvas-body">
                 <ul class="  d-flex flex-column justify-content-evenly">
                     <li>
-                        <a href="#" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
+                        <a href="user-profile.php" id="profile" class="d-flex align-items-center"><img src="<?php echo $row2['users_picture'];?>" alt="<?php echo $row['name'];?>">
                             <p class = "ms-3">profile</p>
                         </a>
                     </li>
                     <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?> "><i class="bi bi-house-door-fill fa-xl me-3"></i>Home</a></li>
                     <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl me-3 "></i>Milestones</a></li>
                    <?php
@@ -111,7 +108,7 @@ if (isset($_GET['milestone_id'])) {
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
                 <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
                 <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
                 
@@ -138,7 +135,7 @@ if (isset($_GET['milestone_id'])) {
                 <section id="form-container" class="container d-md-flex ">
                     <section class="container">
                         <div class="form-floating mb-3 col-12">
-                            <input type="text" class="form-control required" id="Name" <?php if (isset($flag)) {
+                            <input type="text" class="form-control required" id="Name" <?php if (isset($_GET['milestone_id'])) {
                                 echo 'value ="' . $row3["milestone_name"] . '"';
                             } ?> name="Name"
                                 placeholder="Milestone Name"><label for="Name">Milestone Name</label>
@@ -146,7 +143,7 @@ if (isset($_GET['milestone_id'])) {
                         <section class="row mb-3">
                             <div class="col-5">
                                 <div class="input-group" id="datepicker">
-                                    <input type="date" class="form-control" id="endDate" name="endDate" <?php if (isset($flag)) {
+                                    <input type="date" class="form-control" id="endDate" name="endDate" <?php if (isset($_GET['milestone_id'])) {
                                         echo 'value = ' . date($row3["end_date"]);
                                     } ?>
                                         placeholder="End date" aria-label="Input group example"
@@ -161,7 +158,7 @@ if (isset($_GET['milestone_id'])) {
                                 <div class="col-12 col-md-8 ">
                                     <div class="input-group ">
                                         <input type="number" name="bottles" class="form-control " id="numOfPlastics"
-                                            placeholder="Number of plastics " <?php if (isset($flag)) {
+                                            placeholder="Number of plastics " <?php if (isset($_GET['milestone_id'])) {
                                                 echo 'value ="' . $row3["bottles"] . '"';
                                             } ?> aria-label="Input group example "
                                             aria-describedby="bottles " min=0>
@@ -175,7 +172,7 @@ if (isset($_GET['milestone_id'])) {
                                 <div class="col-12 col-md-8 ">
                                     <div class="input-group ">
                                         <input type="number" name="cans" class="form-control" id="numOfCans"
-                                            placeholder="Number of cans " <?php if (isset($flag)) {
+                                            placeholder="Number of cans " <?php if (isset($_GET['milestone_id'])) {
                                                 echo 'value ="' . $row3["cans"] . '"';
                                             } ?> aria-label="Input group example "
                                             aria-describedby="cans " min=0>
@@ -189,7 +186,7 @@ if (isset($_GET['milestone_id'])) {
                                 <div class="col-12 col-md-8 ">
                                     <div class="input-group ">
                                         <input type="number" name="boxes" class="form-control" id="numOfBoxes"
-                                            placeholder="Number of cardboards " <?php if (isset($flag)) {
+                                            placeholder="Number of cardboards " <?php if (isset($_GET['milestone_id'])) {
                                                 echo 'value ="' . $row3["boxes"] . '"';
                                             } ?> aria-label="Input group example "
                                             aria-describedby="boxes " min=0>
@@ -223,20 +220,11 @@ if (isset($_GET['milestone_id'])) {
                             <?php
 
                             foreach ($badge as $badge) {
-                                if($badge['badge_id']==$row3['badge_id']){
-                                    echo '   
-                                    <label>
+                                    echo   
+                                    '<label>
                                         <input type="radio" name="galleryBadge" value="' . $badge['badge_id'] . '" checked>
                                         <img src="' . $badge['badge_photo_path'] . '" alt="' . $badge['badge_name'] . '" title ="' . $badge['badge_name'] . '">
                                     </label>';
-                                }else{
-
-                                    echo '   
-                                    <label>
-                                    <input type="radio" name="galleryBadge" value="' . $badge['badge_id'] . '">
-                                    <img src="' . $badge['badge_photo_path'] . '" alt="' . $badge['badge_name'] . '" title ="' . $badge['badge_name'] . '">
-                                    </label>';
-                                }
                             } ?>
 
                         </div>
@@ -244,7 +232,7 @@ if (isset($_GET['milestone_id'])) {
                 </section>
                 <?php if (isset($_GET['milestone_id'])) {
 
-                    echo '<input type="hidden" id="instanceId" name="milestone_id" value=" ' . $flag . '">';
+                    echo '<input type="hidden" id="instanceId" name="milestone_id" value=" ' . $_GET['milestone_id'] . '">';
                 } ?>
 
                 <button id="share-btn" type="button" class="btn btn-success mt-5 col-8 col-md-4 align-self-center"
@@ -279,7 +267,7 @@ if (isset($_GET['milestone_id'])) {
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
             <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
             <?php
@@ -294,13 +282,9 @@ if (isset($_GET['milestone_id'])) {
         </ul>
     </footer>
 </body>
-
 </html>
 <?php
-
 mysqli_free_result($result2);
-
 mysqli_close($connection);
-
 ?>
 

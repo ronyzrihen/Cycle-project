@@ -8,7 +8,7 @@ if(!isset($_SESSION["user_id"])) {
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
     $query = "SELECT * FROM tbl_221_users WHERE email = '" . $email . "'";
-    $result = mysqli_query($connection, $query);
+    $result = _query($connection, $query);
     if ($result) {
         $row = mysqli_fetch_assoc($result);
     } else {
@@ -25,12 +25,10 @@ if ($result2) {
 } else {
     echo "Failed to retrieve data from the database.";
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +48,6 @@ if ($result2) {
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
     <title>cycles</title>
 </head>
-
 <body>
     <header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
@@ -76,7 +73,7 @@ if ($result2) {
                     </li>
                     <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?> "><i class="bi bi-house-door-fill fa-xl me-3"></i>Home</a></li>
                     <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl me-3 "></i>Milestones</a></li>
                    <?php
@@ -100,7 +97,7 @@ if ($result2) {
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
                 <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
                 <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl"></i></a></li>
                 
@@ -163,9 +160,9 @@ if ($result2) {
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
-            <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl"></i></a></li>
+            <li><a href="list_page.php"><i class="bi bi-trophy-fill fa-xl"></i></a></li>
             <?php
                    if($_SESSION['user_type']=="student"){
                        echo '<li><a href="cycle_list.php" ><i class="bi bi-recycle selected fa-xl"></i></a></li>';

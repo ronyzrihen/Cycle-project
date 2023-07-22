@@ -1,7 +1,10 @@
 <?php
 include 'db.php';
+include 'config.php';
 session_start();
-
+if(!isset($_SESSION["user_id"])) {
+    header('Location: '.URL.'index.php');
+}
 
 if (isset($_SESSION['email'])) {
 $email = $_SESSION['email'];
@@ -37,7 +40,6 @@ else {
 
 <!DOCTYPE html>
 <html lang="en">
-    
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,7 +59,6 @@ else {
         <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
         <title>saved!</title>
     </head>
-    
     <body>
         <header class="d-flex align-items-center ">
             <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
@@ -81,7 +82,10 @@ else {
                         <p>profile</p>
                     </a>
                 </li>
-                <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i>
+                <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "list_page.php";}
+                    ?>"><i class="bi bi-house-door-fill fa-2xl"></i>
                 <p>Home</p>
             </a></li>
             <li><a href="list_page.php" id="humburger-selected"><i class="bi bi-trophy-fill fa-2xl"></i>
@@ -101,7 +105,7 @@ else {
     <p>Settings</p>
 </a></li>
 <li>
-    <a href="#"> <i class="bi bi-box-arrow-in-right fa-2xl"></i>
+    <a href="index.php"> <i class="bi bi-box-arrow-in-right fa-2xl"></i>
     <p>Exit</p>
 </a>
 </li>
@@ -144,18 +148,18 @@ else {
 </main>
 <footer class="container-fluid fixed-bottom d-flex d-md-none">
     <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
-        <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
+        <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "list_page.php";}
+                    ?>"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
         <li><a href="#" ><i class="bi bi-trophy-fill fa-2xl aside-selected"></i></a></li>
         <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
         <li>
             <a href="#"> <i class="bi bi-chat-left-text-fill fa-2xl"></i> </a>
         </li>
     </ul>
-    
 </footer>
-
 </body>
-
 </html>
 
 <?php

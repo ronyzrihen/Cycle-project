@@ -14,27 +14,29 @@ if (isset($_SESSION['email'])) {
     } else {
         echo "Failed to get data from the database.";
     }
-    $query2 = "SELECT * FROM tbl_221_milestones inner join tbl_221_badges using(badge_id)";
 } else {
     echo "Email is missing.";
 }
 if (!empty($_GET['cat'])) {
     $cat = $_GET['cat'];
-        $query2 = "SELECT * FROM tbl_221_milestones inner join tbl_221_badges using(badge_id) order by $cat desc;";
-    
-}   
-$result2 = mysqli_query($connection, $query2);
-if ($result2) {
-    $row2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
-} else {
-    echo "Failed to retrieve data from the database.";
+    $query2 = "SELECT * FROM tbl_221_milestones INNER JOIN tbl_221_badges USING (badge_id) ORDER BY $cat DESC;";
+    $result2 = mysqli_query($connection, $query2);
+
+    if ($result2) {
+        $row2 = array();
+        while ($row1 = mysqli_fetch_assoc($result2)) {
+            $row2[] = $row1;
+        }
+    } else {
+        echo "Failed to retrieve data from the database.";
+    }
 }
+ 
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,11 +56,10 @@ if ($result2) {
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
     <title>Milestomes</title>
 </head>
-
 <body>
 <header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
-        <a href="#" class="me-5 d-none d-md-inline" id="user">
+        <a href="user-profile.php" class="me-5 d-none d-md-inline" id="user">
             <label>
                 <?php echo $row['name']; ?>
             </label>
@@ -74,13 +75,13 @@ if ($result2) {
             <div class="offcanvas-body">
                 <ul class="  d-flex flex-column justify-content-evenly">
                     <li>
-                        <a href="#" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
+                        <a href="user-profile.php" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
                             <p class = "ms-3">profile</p>
                         </a>
                     </li>
                     <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?> "><i class="bi bi-house-door-fill fa-xl me-3"></i>Home</a></li>
                     <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl me-3 "></i>Milestones</a></li>
                    <?php
@@ -104,7 +105,7 @@ if ($result2) {
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
                 <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
                 <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
                 
@@ -166,35 +167,38 @@ if ($result2) {
 
 
             <article class="container">
-                <?php
-                foreach ($row2 as $rows2) {
-                    echo '<section class="d-flex justify-content-evenly align-items-center milestone-rectangle container instance">';
-                    echo '<section class="col-md-3 left-list">';
-                    echo '<a href="milestone.php?milestone_id=' . $rows2["milestone_id"] . '"id = "milestone_link"><i class="bi bi-info-circle replaceable_icon"></i></a><br>';
-                    echo '<h5>"' . $rows2["milestone_name"] . '"</h5>';
-                    echo '<h5 class = "d-none d-md-block" >Until: ' . $rows2["end_date"] . '</h5>';
-                    echo '</section>';
-                    echo '<ul class="middle-list d-flex align-items-center justify-content-evenly col-6">';
-                    echo '<li>';
-                    echo '<i class="fa-solid fa-database"></i>';
-                    echo '<span class="text">' . $rows2["cans"] . '</span>';
-                    echo '</li>';
-                    echo '<li>';
-                    echo '<i class="fa-solid fa-bottle-water"></i>';
-                    echo '<span class="text">' . $rows2["bottles"] . '</span>';
-                    echo '</li>';
-                    echo '<li>';
-                    echo '<i class="fa-solid fa-box-open"></i>';
-                    echo '<span class="text">' . $rows2["boxes"] . '</span>';
-                    echo '</li>';
-                    echo '</ul>';
-                    echo '<section id="badge-section" class="col-3 d-none right-list d-md-flex flex-column align-items-center">';
-                    echo '<label class="badge" for="buttles up!">Badge</label>';
-                    echo '<img src="' . $rows2["badge_photo_path"] . '" alt="milestone photo">';
-                    echo '</section>';
-                    echo '</section>';
-                }
-                ?>
+
+    <?php if (isset($row2) && is_array($row2)): ?>
+    <?php foreach ($row2 as $rows1): ?>
+        <section class="d-flex justify-content-evenly align-items-center milestone-rectangle container instance">
+            <section class="col-md-3 left-list">
+                <a href="milestone.php?milestone_id=<?= $rows1["milestone_id"]; ?>" id="milestone_link">
+                    <i class="bi bi-info-circle replaceable_icon"></i>
+                </a><br>
+                <h5><?= $rows1["milestone_name"]; ?></h5>
+                <h5 class="d-none d-md-block">Until: <?= $rows1["end_date"]; ?></h5>
+            </section>
+            <ul class="middle-list d-flex align-items-center justify-content-evenly col-6">
+                <li>
+                    <i class="fa-solid fa-database"></i>
+                    <span class="text"><?= $rows1["cans"]; ?></span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-bottle-water"></i>
+                    <span class="text"><?= $rows1["bottles"]; ?></span>
+                </li>
+                <li>
+                    <i class="fa-solid fa-box-open"></i>
+                    <span class="text"><?= $rows1["boxes"]; ?></span>
+                </li>
+            </ul>
+            <section id="badge-section" class="col-3 d-none right-list d-md-flex flex-column align-items-center">
+                <label class="badge" for="bottles up!">Badge</label>
+                <img src="<?= $rows1["badge_photo_path"]; ?>" alt="milestone photo">
+            </section>
+        </section>
+    <?php endforeach; ?>
+<?php endif; ?>
             </article>
         </div>
     </main>
@@ -202,7 +206,7 @@ if ($result2) {
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
             <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
             <?php
@@ -216,7 +220,6 @@ if ($result2) {
             </li>
         </ul>
     </footer>
-   
 </body>
 </html>
 <?php

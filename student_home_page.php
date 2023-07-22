@@ -20,7 +20,6 @@ if (isset($_SESSION['email'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,11 +40,10 @@ if (isset($_SESSION['email'])) {
     <script src="https://use.fontawesome.com/2491eb7d5e.js"></script>
     <title>Milestone Home Page</title>
 </head>
-
 <body>
 <header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
-        <a href="#" class="me-5 d-none d-md-inline" id="user">
+        <a href="user-profile.php" class="me-5 d-none d-md-inline" id="user">
             <label>
                 <?php echo $row['name']; ?>
             </label>
@@ -61,13 +59,13 @@ if (isset($_SESSION['email'])) {
             <div class="offcanvas-body">
                 <ul class="  d-flex flex-column justify-content-evenly">
                     <li>
-                        <a href="#" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
+                        <a href="user-profile.php" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
                             <p class = "ms-3">profile</p>
                         </a>
                     </li>
                     <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?> "><i class="bi bi-house-door-fill selected fa-xl me-3"></i>Home</a></li>
                     <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl me-3 "></i>Milestones</a></li>
                    <?php
@@ -91,7 +89,7 @@ if (isset($_SESSION['email'])) {
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
                 <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill selected fa-xl"></i> </a></li>
                 <li><a href="list_page.php" ><i class="bi bi-trophy-fill fa-xl"></i></a></li>
                 
@@ -107,7 +105,6 @@ if (isset($_SESSION['email'])) {
                 </li>
             </ul>
         </aside>
-
         <div id="wrapper" class="container">
 
             <section class="bread d-none d-md-block  mt-3 mb-3">
@@ -127,28 +124,24 @@ if (isset($_SESSION['email'])) {
             </section>
             </section>
             <div class="container-log col-12 ">
-    <ul class="icon-list d-flex align-items-center mt-5 justify-content-evenly">
-        <li>
-            <i class="fa-solid fa-database"></i>
-        </li>
-        <li>
-            <i class="fa-solid fa-bottle-water"></i>
-        </li>
-        <li>
-            <i class="fa-solid fa-box-open"></i>
-        </li>
-    </ul>
-</div>
-
-
-
-        </div>
+                <ul class="icon-list d-flex align-items-center mt-5 justify-content-evenly">
+                    <li>
+                        <i class="fa-solid fa-database"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-bottle-water"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-box-open"></i>
+                    </li>
+                </ul>
+            </div>
     </main>
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill selected fa-xl"></i> </a></li>
             <li><a href="list_page.php" ><i class="bi bi-trophy-fill  fa-xl"></i></a></li>
             <?php
@@ -163,7 +156,6 @@ if (isset($_SESSION['email'])) {
         </ul>
     </footer>
 </body>
-
 </html>
 <?php
 mysqli_close($connection);

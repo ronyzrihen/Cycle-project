@@ -1,3 +1,7 @@
+<?php
+include 'config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +18,6 @@
     <title>create user</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
-
 <body>
     <section id = "login-logo-icon" class="d-flex justify-contant-center  container-fluid">
         <img class="login-logo" src="./images/cycle-logo.png" alt="Logo">

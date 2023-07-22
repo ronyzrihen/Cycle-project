@@ -1,5 +1,6 @@
 <?php 
     include "db.php";
+    include 'config.php';
     session_start();
     if (!isset($_SESSION["user_id"])) {
         header('Location: index.php');
@@ -44,7 +45,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="js/diagram.js"></script>
 </head>
-
 <body>
     <header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
@@ -100,7 +100,7 @@
         <div id="wrapper" class="container">
 
             <section class="bread d-none d-md-block  mt-3 mb-3">
-                <a href="#" class="selected">Home</a>
+                <a href="list_page.php" class="selected">Home</a>
                 <label>/ <?php echo $row['name']; ?></label>
             </section>
             <h1 class="text-center container-fluid mt-5 mb-5"><?php echo $row['name']; ?></h1>
@@ -130,7 +130,10 @@
     </main>
     <footer class="container-fluid fixed-bottom d-flex d-md-none">
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
-            <li><a href="#"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
+            <li><a href="<?php if($_SESSION['user_type']=='student'){
+                        echo "student_home_page.php";
+                    }else{echo "list_page.php";}
+                    ?>"><i class="bi bi-house-door-fill fa-2xl"></i> </a></li>
             <li><a href="list_page.php" id="aside-selected"><i class="bi bi-trophy-fill fa-2xl"></i></a></li>
             <li><a href="#"><i class="bi bi-people-fill fa-2xl"></i></a></li>
             <li>

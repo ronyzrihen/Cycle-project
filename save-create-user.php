@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+include 'config.php';
 session_start();
 
 if (!empty($_POST["username"])) {
@@ -106,7 +107,6 @@ else {
         </main>
     </body>
 </html>
-
 <?php
 
         mysqli_close($connection);

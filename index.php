@@ -19,7 +19,12 @@ if (!empty($_POST["loginMail"])) {
         $_SESSION["user_id"] = $row['id'];
         $_SESSION["user_type"] = $row['user_type'];
         $_SESSION["email"] = $_POST["loginMail"];
-        header('Location: list_page.php');
+        if($_SESSION["user_type"] == 'admin'){
+            header('Location: ' . URL . 'list_page.php');
+            }
+            else{
+                header('Location: ' . URL . 'student_home_page.php');
+            }
         exit();
     } else {
         $message = "Invalid Username or Password!";
@@ -29,7 +34,6 @@ if (!empty($_POST["loginMail"])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,7 +55,6 @@ if (!empty($_POST["loginMail"])) {
 
     <title>Login to Cycle</title>
 </head>
-
 <body>
     <div id="wrapper" class="container-fluid d-flex flex-column align-items-center">
         <section id = "login-logo-icon">
@@ -92,7 +95,6 @@ if (!empty($_POST["loginMail"])) {
         </section>
     </div>
 </body>
-
 </html>
 <?php
 mysqli_close($connection);

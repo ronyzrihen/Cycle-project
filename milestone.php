@@ -62,15 +62,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="js/diagram.js"></script>
 </head>
-
 <body>
 <header class="d-flex align-items-center ">
         <a href="list_page.php" id="logo" class="me-auto ms-5"></a>
-        <a href="#" class="me-5 d-none d-md-inline" id="user">
+        <a href="user-profile.php" class="me-5 d-none d-md-inline" id="user">
             <label>
-                <?php echo $row['name']; ?>
+                <?php echo $row2['name']; ?>
             </label>
-            <img src=<?php echo $row['users_picture']; ?> alt="<?php echo $row['name'];?>">
+            <img src=<?php echo $row2['users_picture']; ?> alt="<?php echo $row2['name'];?>">
         </a>
         <button class="navbar-toggler fa-solid fa-bars fa-xl navbar-toggler-icon me-4" type="button"
             data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"></button>
@@ -82,13 +81,13 @@
             <div class="offcanvas-body">
                 <ul class="  d-flex flex-column justify-content-evenly">
                     <li>
-                        <a href="#" id="profile" class="d-flex align-items-center"><img src="<?php echo $row['users_picture'];?>" alt="<?php echo $row['name'];?>">
+                        <a href="user-profile.php" id="profile" class="d-flex align-items-center"><img src="<?php echo $row2['users_picture'];?>" alt="<?php echo $row2['name'];?>">
                             <p class = "ms-3">profile</p>
                         </a>
                     </li>
                     <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?> "><i class="bi bi-house-door-fill fa-xl me-3"></i>Home</a></li>
                     <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl me-3 "></i>Milestones</a></li>
                    <?php
@@ -112,7 +111,7 @@
             <ul id="aside-links" class="d-flex  flex-column justify-content-around">
                 <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
                 <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
                 
@@ -130,7 +129,7 @@
         </aside>
         <div id="wrapper" class="container-fluid">
             <section class="bread d-none d-md-block  mt-3 mb-3">
-                <a href="#" class="selected">Home</a>
+                <a href="list_page.php" class="selected">Home</a>
                 <a href="list_page.php" class="selected">/ Milestones</a>
                 <label>/ <?php echo $row['milestone_name']; ?></label>
             </section>
@@ -166,7 +165,7 @@
         <ul id="footer-links" class="mt-3 d-flex align-items-center justify-content-evenly">
             <li><a href="<?php if($_SESSION['user_type']=='student'){
                         echo "student_home_page.php";
-                    }else{echo "#";}
+                    }else{echo "list_page.php";}
                     ?>"><i class="bi bi-house-door-fill fa-xl"></i> </a></li>
             <li><a href="list_page.php" ><i class="bi bi-trophy-fill selected fa-xl"></i></a></li>
             <?php
